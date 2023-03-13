@@ -18,7 +18,6 @@ namespace our {
     public:
         ShaderProgram(){
             //TODO: (Req 1) Create A shader program
-            glCreateProgram(program);
         }
         ~ShaderProgram(){
             //TODO: (Req 1) Delete a shader program
@@ -34,17 +33,14 @@ namespace our {
 
         GLuint getUniformLocation(const std::string &name) {
             //TODO: (Req 1) Return the location of the uniform with the given name
-           return glGetUniformLocation(program,name);
         }
 
         void set(const std::string &uniform, GLfloat value) {
             //TODO: (Req 1) Send the given float value to the given uniform
-            glUniform1f(getUniformLocation(uniform),value);
         }
 
         void set(const std::string &uniform, GLuint value) {
             //TODO: (Req 1) Send the given unsigned integer value to the given uniform
-            glUniform1ui()
         }
 
         void set(const std::string &uniform, GLint value) {
