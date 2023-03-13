@@ -11,6 +11,22 @@ out vec4 frag_color;
 uniform int size = 32;
 uniform vec3 colors[2];
 
+uniform int winodwSize=512;
+
 void main(){
-    frag_color = vec4(colors[0], 1.0);
+
+
+    int x=int(gl_FragCoord.x);
+    int y=int(gl_FragCoord.y);
+
+    if(x%(2*size)<size &&  y%(2*size)<size ){
+        frag_color = vec4(colors[0],1.0);
+    }else if(x%(2*size)>=size &&  y%(2*size)>=size){
+        frag_color = vec4(colors[0], 1.0);
+    }
+    else {
+        frag_color = vec4(colors[1], 1.0);
+    }
+
+
 }
