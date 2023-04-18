@@ -14,7 +14,7 @@ namespace our {
         glm::mat4 scaleMatrix=glm::scale(glm::mat4(1.0f),scale);
         glm::mat4 rotMatrix=glm::yawPitchRoll(rotation.y,rotation.x,rotation.z);
         glm::mat4 transformMatrix=transMatrix*rotMatrix*scaleMatrix;
-        return glm::mat4(1.0f); 
+        return transformMatrix; 
     }
 
      // Deserializes the entity data and components from a json object
