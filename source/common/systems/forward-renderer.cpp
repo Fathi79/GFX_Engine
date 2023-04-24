@@ -180,10 +180,17 @@ namespace our {
             
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
+            
+            ///////////////////////////////////////////////// ???? need to make sure
+            // x=x, y=y, z=1
+            // 1 0 0 0     x     x
+            // 0 1 0 0  *  y  =  y
+            // 0 0 0 1     z     1
+            // 0 0 0 1     1     1
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f,
                 0.0f, 0.0f, 0.0f, 1.0f
             );
             //TODO: (Req 10) set the "transform" uniform
