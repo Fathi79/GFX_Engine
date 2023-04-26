@@ -1,7 +1,8 @@
 #include "camera.hpp"
 #include "../ecs/entity.hpp"
+#define GLM_SWIZZLE
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp> 
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace our {
     // Reads camera parameters from the given json object
@@ -30,12 +31,15 @@ namespace our {
         // - center is any point on the line of sight. So center can be any point (0,0,z) where z < 0. For simplicity, we let center be (0,0,-1)
         // - up is the direction (0,1,0)
         // but to use glm::lookAt, we need eye, center and up in the world state.
-        // Since M (see above) transforms from the camera to thw world space, you can use M to compute:
+        // Since M (see above) transforms from the camera to the world space, you can use M to compute:
         // - the eye position which is the point (0,0,0) but after being transformed by M
         // - the center position which is the point (0,0,-1) but after being transformed by M
         // - the up direction which is the vector (0,1,0) but after being transformed by M
         // then you can use glm::lookAt
-        return glm::mat4(1.0f);
+        glm::vec4 eye = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) * M;
+        glm::vec4 center = glm::vec4(0.0f, 0.0f, -1.0f, 1.0f) * M;
+        glm::vec4 up = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) * M;
+        return glm::lookAt(glm::vec3(eye), glm::vec3(center), glm::vec3(up));
     }
 
     // Creates and returns the camera projection matrix
@@ -46,6 +50,16 @@ namespace our {
         // It takes left, right, bottom, top. Bottom is -orthoHeight/2 and Top is orthoHeight/2.
         // Left and Right are the same but after being multiplied by the aspect ratio
         // For the perspective camera, you can use glm::perspective
-        return glm::mat4(1.0f);
+        float top = orthoHeight/2;
+        float aspectRatio = (float)viewportSize.x / viewportSize.y;
+        switch(cameraType)
+        {
+            case CameraType::ORTHOGRAPHIC:
+            return glm::ortho(-top*aspectRatio, top*aspectRatio, -top, top);
+            case CameraType::PERSPECTIVE:
+            return glm::perspective(fovY, aspectRatio, near, far);
+            default:
+            return glm::mat4(1.0f);     //To handle the corner case of selecting neither orthographic nor perspective
+        }
     }
 }
