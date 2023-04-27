@@ -36,9 +36,9 @@ namespace our {
         // - the center position which is the point (0,0,-1) but after being transformed by M
         // - the up direction which is the vector (0,1,0) but after being transformed by M
         // then you can use glm::lookAt
-        glm::vec4 eye = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) * M;
-        glm::vec4 center = glm::vec4(0.0f, 0.0f, -1.0f, 1.0f) * M;
-        glm::vec4 up = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) * M;
+        glm::vec4 eye = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) ;
+        glm::vec4 center = M * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f) ;
+        glm::vec4 up = M * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) ;
         return glm::lookAt(glm::vec3(eye), glm::vec3(center), glm::vec3(up));
     }
 
