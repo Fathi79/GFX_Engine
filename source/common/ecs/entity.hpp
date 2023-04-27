@@ -36,6 +36,7 @@ namespace our {
             //TODO: (Req 8) Create an component of type T, set its "owner" to be this entity, then push it into the component's list
             // Don't forget to return a pointer to the new component
             T* ptr = new T();
+            ptr->owner = this;
             Component* bp = ptr;
             components.push_back(bp);
             return ptr;
@@ -76,7 +77,7 @@ namespace our {
                 T* ptr = dynamic_cast<T*>(*it);
                 if(ptr != nullptr)
                 {
-                    delete ptr;
+                    delete *it;
                     components.erase(it);
                     return;
                 }
@@ -116,8 +117,8 @@ namespace our {
             for(auto it = components.begin(); it != components.end(); it++)
             {
                 delete *it;
-                components.erase(it);
             }
+            components.clear();
         }
 
         // Entities should not be copyable
