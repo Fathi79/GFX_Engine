@@ -41,37 +41,30 @@ namespace our {
         // The elements in the "markedForRemoval" set will be removed and deleted when "deleteMarkedEntities" is called.
         void markForRemoval(Entity* entity){
             //TODO: (Req 8) If the entity is in this world, add it to the "markedForRemoval" set.
-            for(auto it = entities.begin(); it != entities.end(); it++)
-                if(*it == entity)
-                {
-                    markedForRemoval.insert(entity);
-                    return;
-                }
+            if(entity->world == this) markedForRemoval.insert(entity);
         }
 
         // This removes the elements in "markedForRemoval" from the "entities" set.
         // Then each of these elements are deleted.
         void deleteMarkedEntities(){
             //TODO: (Req 8) Remove and delete all the entities that have been marked for removal
-            while(!markedForRemoval.empty())
+            for(auto it = markedForRemoval.begin(); it != markedForRemoval.end(); it++)
             {
-                auto it = markedForRemoval.begin();
-                entities.erase(*it);
                 delete *it;
-                markedForRemoval.erase(*it);
+                entities.erase(it);
             }
+            markedForRemoval.clear();
         }
 
         //This deletes all entities in the world
         void clear(){
             //TODO: (Req 8) Delete all the entites and make sure that the containers are empty
-            deleteMarkedEntities();
-            while(!entities.empty())
+            for(auto it = entities.begin(); it != entities.end(); it++)
             {
-                auto it = entities.begin();
-                entities.erase(*it);
                 delete *it;
             }
+            entities.clear();
+            markedForRemoval.clear();
         }
 
         //Since the world owns all of its entities, they should be deleted alongside it.
