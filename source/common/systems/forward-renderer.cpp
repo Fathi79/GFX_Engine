@@ -62,6 +62,7 @@ namespace our {
             // The depth format can be (Depth component with 24 bits).
             
             colorTarget=texture_utils::empty(GL_RGBA8, windowSize);
+            Texture2D* colorTarget=texture_utils::empty(GL_RGBA8, windowSize);
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
             colorTarget->getOpenGLName(), 0);
             
@@ -194,7 +195,7 @@ namespace our {
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 11) bind the framebuffer
-            
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
             
         }
 
