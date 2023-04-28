@@ -29,47 +29,50 @@ namespace our {
         // a vertex array object to define how to read the vertex & element buffer during rendering 
         Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& elements)
         {
+            
+
             //TODO: (Req 2) Write this function
             // remember to store the number of elements in "elementCount" since you will need it for drawing
             // to return functions of open gl
-            if(!gladLoadGL(glfwGetProcAddress)){
-               // std::cerr << "Failed to load OpenGL\n";
-                exit(1);
-            }
+            
             elementCount=elements.size();
             // For the attribute locations, use the constants defined above: ATTRIB_LOC_POSITION, ATTRIB_LOC_COLOR, etc
 
-           
+            //creating one vertex buffer 
+            //glGenBuffers(number of vertex buffer, vertex buffer name);
             glGenBuffers(1, &VBO);
+            //Binding the vertex buffer
+            //glBindVertexArray(Binding Target , vertex buffer name);
             glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            //glBufferData(target, size,data, usage);
             glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
 
-        
+            //Creating 1 vertex array 
+            //glGenVertexArrays(number of vertex arrays, vertex array name);
             glGenVertexArrays(1, &VAO);
+             //Binding the vertex array
+            //glBindVertexArray(vertex array name);
             glBindVertexArray(VAO);
-
+            
+            //creating one element buffer
             glGenBuffers(1, &EBO);
+            //glBindBuffer(Binding Target , element buffer name);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements.size()*sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
 
-            glBindBuffer(GL_ARRAY_BUFFER, VBO);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-            GLint position_loc = ATTRIB_LOC_POSITION;//glGetAttribLocation(program, "position");
-            glEnableVertexAttribArray(position_loc); 
-            glVertexAttribPointer(position_loc, 3, GL_FLOAT, false, sizeof(Vertex), 0);
+            // Enabling vertex atrribute
+            // glEnableVertexAttribArray(the index of the generic vertex attribute)
+            glEnableVertexAttribArray(ATTRIB_LOC_POSITION); 
+            glVertexAttribPointer(ATTRIB_LOC_POSITION, 3, GL_FLOAT, false, sizeof(Vertex), 0);
             
-            GLint color_loc = ATTRIB_LOC_COLOR;
-            glEnableVertexAttribArray(color_loc); 
-            glVertexAttribPointer(color_loc, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void*)offsetof(Vertex, color));
+            glEnableVertexAttribArray(ATTRIB_LOC_COLOR); 
+            glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void*)offsetof(Vertex, color));
 
-
-            GLint texture_loc = ATTRIB_LOC_TEXCOORD;//glGetAttribLocation(program, "position");
-            glEnableVertexAttribArray(texture_loc); 
-            glVertexAttribPointer(texture_loc, 2, GL_FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, tex_coord));
+            glEnableVertexAttribArray(ATTRIB_LOC_TEXCOORD); 
+            glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, tex_coord));
             
-            GLint normal_loc = ATTRIB_LOC_NORMAL;
-            glEnableVertexAttribArray(normal_loc); 
-            glVertexAttribPointer(normal_loc, 3, GL_FLOAT, true, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+            glEnableVertexAttribArray(ATTRIB_LOC_NORMAL); 
+            glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, true, sizeof(Vertex), (void*)offsetof(Vertex, normal));
 
                     
         }
@@ -78,8 +81,10 @@ namespace our {
         void draw() 
         {
           
-                glBindVertexArray(VAO);
-                glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(VAO);
+            //render primitives from array data
+            //glDrawElements(mode, count,type,indices)
+            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);
         
         }
 

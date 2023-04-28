@@ -140,15 +140,20 @@ namespace our {
 
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::vec3 cameraForward = glm::vec3(0.0, 0.0, -1.0f);
-        glm::mat4 t = glm::lookAt(
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            glm::vec3(0.0f, 1.0f, 0.0f)
-        );
+        
+        auto owner = camera->getOwner();
+        auto M = owner->getLocalToWorldMatrix();
+        glm::vec4 eye = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) ;
+        glm::vec4 center = M * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f) ;
+        glm::vec3 cameraForward = glm::normalize(center - eye);
+
+
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
+            if (glm::dot(cameraForward,first.center) > glm::dot(cameraForward,second.center)  )
+            return true;
+            else
             return false;
         });
 
@@ -174,6 +179,10 @@ namespace our {
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
          for (auto opaqueCommand : opaqueCommands)
         {
+            glm::mat4 modelMatrix = opaqueCommand.localToWorld;
+            glm::mat4 mvpMatrix = VP * modelMatrix;
+            opaqueCommand.material->setup();
+            opaqueCommand.material->shader->set("transform", mvpMatrix);
             opaqueCommand.mesh->draw();
         }
         // If there is a sky material, draw the sky
@@ -214,6 +223,10 @@ namespace our {
         
          for (auto transparentCommand : transparentCommands)
         {
+            glm::mat4 modelMatrix = transparentCommand.localToWorld;
+            glm::mat4 mvpMatrix = VP * modelMatrix;
+            transparentCommand.material->setup();
+            transparentCommand.material->shader->set("transform", mvpMatrix);
             transparentCommand.mesh->draw();
         }
         // If there is a postprocess material, apply postprocessing
