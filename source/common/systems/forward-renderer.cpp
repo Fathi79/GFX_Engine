@@ -141,6 +141,13 @@ namespace our {
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
         
+        // These lines of code define a camera position and orientation in a 3D scene . 
+        // at first i get the owner of the camera
+        // then getLocalToWorldMatrix 
+        // then creates a 4D vector called "eye" with x, y, z, and w components set to my place in world multiplyed by (0.0f, 0.0f, 0.0f, 1.0f)->(). This represents the position of the camera in world space.
+        // then creates another 4D vector called "center" with x, y, z, and w components set to my place in world multiplyed by (0.0f, 0.0f, -1.0f, 1.0f). This represents the point in world space that the camera is looking at.
+        // then calculates a normalized vector called "cameraForward" by subtracting the "eye" vector from the "center" vector and then normalizing the result. This represents the direction that the camera is facing.
+
         auto owner = camera->getOwner();
         auto M = owner->getLocalToWorldMatrix();
         glm::vec4 eye = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) ;
@@ -151,6 +158,9 @@ namespace our {
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
+            //the dot product of two vectors is a scalar (a single number). represents the magnitude of the projection of one vector onto the other. 
+            //In other words, it measures how much of one vector is pointing in the same direction as the other vector.
+            //so by these i know which object i nearer to the camera
             if (glm::dot(cameraForward,first.center) > glm::dot(cameraForward,second.center)  )
             return true;
             else
@@ -160,12 +170,15 @@ namespace our {
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
         glm::mat4 VP = (camera->getProjectionMatrix(windowSize))*(camera->getViewMatrix());
         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
+        //glViewport((lower left corner of the viewport rectangle),(width and height of the viewport))
         glViewport(0, 0, windowSize.x, windowSize.y);
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
         glClearColor(0.0, 0.0, 0.0, 1.0);
         glClearDepth(1.0f);
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
+        // glColorMask controls which color channels (red, green, blue, and alpha) are enabled for writing. 
         glColorMask(true, true, true, true);
+        // enable writing to depth buffer
         glDepthMask(true);
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
@@ -179,6 +192,7 @@ namespace our {
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
          for (auto opaqueCommand : opaqueCommands)
         {
+            // use MVP matrix to draw to object in its right place
             glm::mat4 modelMatrix = opaqueCommand.localToWorld;
             glm::mat4 mvpMatrix = VP * modelMatrix;
             opaqueCommand.material->setup();
