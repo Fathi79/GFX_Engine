@@ -141,6 +141,13 @@ namespace our {
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
         
+        // These lines of code define a camera position and orientation in a 3D scene . 
+        // at first i get the owner of the camera
+        // then getLocalToWorldMatrix 
+        // then creates a 4D vector called "eye" with x, y, z, and w components set to my place in world multiplyed by (0.0f, 0.0f, 0.0f, 1.0f)->(). This represents the position of the camera in world space.
+        // then creates another 4D vector called "center" with x, y, z, and w components set to my place in world multiplyed by (0.0f, 0.0f, -1.0f, 1.0f). This represents the point in world space that the camera is looking at.
+        // then calculates a normalized vector called "cameraForward" by subtracting the "eye" vector from the "center" vector and then normalizing the result. This represents the direction that the camera is facing.
+
         auto owner = camera->getOwner();
         auto M = owner->getLocalToWorldMatrix();
         glm::vec4 eye = M * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) ;
@@ -151,6 +158,9 @@ namespace our {
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
+            //the dot product of two vectors is a scalar (a single number). represents the magnitude of the projection of one vector onto the other. 
+            //In other words, it measures how much of one vector is pointing in the same direction as the other vector.
+            //so by these i know which object i nearer to the camera
             if (glm::dot(cameraForward,first.center) > glm::dot(cameraForward,second.center)  )
             return true;
             else
@@ -160,12 +170,15 @@ namespace our {
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
         glm::mat4 VP = (camera->getProjectionMatrix(windowSize))*(camera->getViewMatrix());
         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
+        //glViewport((lower left corner of the viewport rectangle),(width and height of the viewport))
         glViewport(0, 0, windowSize.x, windowSize.y);
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
         glClearColor(0.0, 0.0, 0.0, 1.0);
         glClearDepth(1.0f);
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
+        // glColorMask controls which color channels (red, green, blue, and alpha) are enabled for writing. 
         glColorMask(true, true, true, true);
+        // enable writing to depth buffer
         glDepthMask(true);
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
@@ -179,6 +192,7 @@ namespace our {
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
          for (auto opaqueCommand : opaqueCommands)
         {
+            // use MVP matrix to draw to object in its right place
             glm::mat4 modelMatrix = opaqueCommand.localToWorld;
             glm::mat4 mvpMatrix = VP * modelMatrix;
             opaqueCommand.material->setup();
@@ -188,34 +202,43 @@ namespace our {
         // If there is a sky material, draw the sky
         if(this->skyMaterial){
             //TODO: (Req 10) setup the sky material
+            //this function sets up the sky attributes as a textured material 
+            // it calls the setup function of the textured material
             this->skyMaterial->setup();
             
             //TODO: (Req 10) Get the camera position
-            
+            /*To determine the camera's position in world coordinates, 
+            a homogeneous vector with components (0, 0, 0, 1) is constructed. 
+            This vector is then multiplied by the transformation matrix M. 
+            The resulting vector is a 4D vector, but the fourth component (w) is discarded to obtain a 3D position vector.
+            The resulting vector gives the camera's position in world coordinates.*/
             glm::vec3 cameraPosition = M * glm::vec4(0.0, 0.0, 0.0, 1.0);
             
             //TODO: (Req 10) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
+            //skyModel is The matrix used to transform the vertices of the sky to make it appear as if it always follows the camera position , giving the illusion that it is infinitely far away. 
             glm::mat4 skyModel = glm::translate(glm::mat4(1.0f), cameraPosition);
             
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
             
-            
+
             // x=x, y=y, z=1
             // 1 0 0 0     x     x
             // 0 1 0 0  *  y  =  y
             // 0 0 0 1     z     1
             // 0 0 0 1     1     1
             glm::mat4 alwaysBehindTransform = glm::mat4(
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 1.0f
+                
+                1.0f, 0.0f, 0.0f, 0.0f,//col1
+                0.0f, 1.0f, 0.0f, 0.0f,//col2
+                0.0f, 0.0f, 0.0f, 0.0f,//col3
+                0.0f, 0.0f, 1.0f, 1.0f //col4
             );
             //TODO: (Req 10) set the "transform" uniform
-            
+            // here we are setting the uniform transform by our mvp matrix (so we first multiply by the model matrix , then VP=P*V , so we get mvp = p*v*m , then we multiply by the matrix always behind the scene which forces the sky to always be behind anything having z=1)
             this->skyMaterial->shader->set("transform", alwaysBehindTransform * VP * skyModel); 
             //TODO: (Req 10) draw the sky sphere
+            // calling mesh draw to draw the sky
             this->skySphere->draw();
             
         }
