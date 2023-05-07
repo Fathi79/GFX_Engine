@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glad/gl.h>
+#include <stdio.h>
 
 namespace our {
 
