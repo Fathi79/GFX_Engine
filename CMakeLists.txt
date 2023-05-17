@@ -75,6 +75,8 @@ set(COMMON_SOURCES
         source/common/components/mesh-renderer.cpp
         source/common/components/free-camera-controller.hpp
         source/common/components/free-camera-controller.cpp
+        source/common/components/light.hpp
+        source/common/components/light.cpp
         source/common/components/movement.hpp
         source/common/components/movement.cpp
         source/common/components/component-deserializer.hpp

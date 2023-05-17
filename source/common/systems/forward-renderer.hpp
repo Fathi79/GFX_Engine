@@ -40,6 +40,12 @@ namespace our
         GLuint postprocessFrameBuffer, postProcessVertexArray;
         Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
+
+        //sky data
+        glm::vec3 sky_top = {0.6, 0.6, 1.0};
+        glm::vec3 sky_middle = {0.3, 0.3, 0.3};
+        glm::vec3 sky_bottom = {0.1, 0.1, 0.0};
+
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).

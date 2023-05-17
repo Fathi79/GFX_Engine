@@ -64,4 +64,23 @@ namespace our {
         }
     }
 
+    // This material includes needed textures for lit materials that 
+    // express material response to lights
+    // albedo, specular, roughness, ambient_occlusion, emission
+    class LitMaterial: public Material{
+    public:
+        Texture2D* albedo;
+        Texture2D* specular;
+        Texture2D* ambient_occlusion;
+        Texture2D* roughness;
+        Texture2D* emissive;
+
+        Sampler* sampler;
+        
+
+        void setup() const override;
+        void deserialize(const nlohmann::json& data) override;
+    };
+
+
 }

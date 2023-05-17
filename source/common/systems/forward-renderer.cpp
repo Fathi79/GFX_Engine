@@ -1,6 +1,9 @@
 #include "forward-renderer.hpp"
 #include "../mesh/mesh-utils.hpp"
 #include "../texture/texture-utils.hpp"
+#include "../components/light.hpp"
+
+#include "../deserialize-utils.hpp"
 
 namespace our {
 
@@ -28,7 +31,14 @@ namespace our {
 
             skyPipelineState.depthTesting.enabled = true;
             skyPipelineState.depthTesting.function = GL_LEQUAL;
+            // negarab neshelha ba2deen law madarbsh error fiha
+            // lighting using sky light instead of ambient
+            sky_top = config.value("sky_top", sky_top);
+            sky_middle = config.value("sky_middle", sky_middle);
+            sky_bottom = config.value("sky_bottom", sky_bottom);
+
             
+
             // Load the sky texture (note that we don't need mipmaps since we want to avoid any unnecessary blurring while rendering the sky)
             std::string skyTextureFile = config.value<std::string>("sky", "");
             Texture2D* skyTexture = texture_utils::loadImage(skyTextureFile, false);
@@ -126,6 +136,7 @@ namespace our {
         CameraComponent* camera = nullptr;
         opaqueCommands.clear();
         transparentCommands.clear();
+        std::vector<LightComponent*> lights;
         for(auto entity : world->getEntities()){
             // If we hadn't found a camera yet, we look for a camera in this entity
             if(!camera) camera = entity->getComponent<CameraComponent>();
@@ -144,6 +155,12 @@ namespace our {
                 // Otherwise, we add it to the opaque command list
                     opaqueCommands.push_back(command);
                 }
+
+
+            }
+            // populate lights if entity has a light component
+            if(auto lightComponent = entity->getComponent<LightComponent>(); lightComponent){
+                lights.push_back(lightComponent);
             }
         }
 
@@ -201,6 +218,15 @@ namespace our {
 
         //TODO: (Req 9) Clear the color and depth buffers
         glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
+        
+        int lightsCount = 0;
+        for(int i = 0; i < lights.size(); i++){
+            if(lights[i]->visible){
+                lightsCount++;
+            }
+        }
+        
+        
         //TODO: (Req 9) Draw all the opaque commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
          for (auto opaqueCommand : opaqueCommands)
@@ -209,7 +235,35 @@ namespace our {
             glm::mat4 modelMatrix = opaqueCommand.localToWorld;
             glm::mat4 mvpMatrix = VP * modelMatrix;
             opaqueCommand.material->setup();
-            opaqueCommand.material->shader->set("transform", mvpMatrix);
+            ShaderProgram* shader = opaqueCommand.material->shader;
+            shader->set("transform", mvpMatrix);
+            shader->set("light_count", lightsCount);
+            //___________________________________________________________________________here is our light
+            // find position and direction of light
+            // assume initial direcion of light is (0, -1, 0) (down) - changing direction happens through rotation
+            // to change initial direction, set rotation in jsonc file
+
+            for(int j = 0, k = 0; j < (int)lights.size(); j++){
+                if(!(lights[j]->visible)){ // don't send this light if not visible
+                    continue;
+                }
+                //TODO 11 check if correct - assumption: default light direction is bottom
+                glm::vec3 position = lights[j]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+
+                // TODO 11 should this be normalized???? - assuming default is down
+                glm::vec4 directionVector = lights[j]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
+                glm::vec3 direction = glm::vec3(directionVector.x, directionVector.y, directionVector.z);
+                
+                lights[j]->sendData(shader, k, direction, position);// k = index used by the shader
+                k++;
+            }
+
+             // sending skylight data
+            // TODO 11 should these values be constants? or read them from jsonc???
+            shader->set("sky.top", sky_top);//TODO
+            shader->set("sky.middle", sky_middle);//TODO
+            shader->set("sky.bottom", sky_bottom);//TODO
+
             opaqueCommand.mesh->draw();
         }
         // If there is a sky material, draw the sky

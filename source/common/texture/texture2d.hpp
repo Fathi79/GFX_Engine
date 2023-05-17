@@ -43,6 +43,8 @@ namespace our {
             glBindTexture(GL_TEXTURE_2D, 0);
         }
 
+        
+
         Texture2D(const Texture2D&) = delete;
         Texture2D& operator=(const Texture2D&) = delete;
     };
