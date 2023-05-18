@@ -31,14 +31,16 @@
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
-                "walls":"assets/textures/wallbake.jpg"
+                "walls":"assets/textures/wallbake.jpg",
+                "stickman":"assets/textures/stickman.jpg"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
                 "maze": "assets/models/maze.obj",
-                "sphere": "assets/models/sphere.obj"
+                "sphere": "assets/models/sphere.obj",
+                "stickman":"assets/models/stickman.obj"
             },
             "samplers":{
                 "default":{},
@@ -141,6 +143,21 @@
                     "tint": [1, 1, 1, 1],
                     "texture": "walls",
                     "sampler": "default"
+                },
+                "stickman":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "stickman",
+                    "sampler": "default"
                 }
 
 
@@ -159,13 +176,13 @@
                 ],
                 "children": [
                     {
-                        "position": [1, -1, -1],
-                        "rotation": [45, 45, 0],
-                        "scale": [0.1, 0.1, 1.0],
+                        "position": [0, -2, -5],
+                        "rotation": [0, 0, 0],
+                        "scale": [0.007,0.007,0.007],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "cube",
+                                "mesh": "stickman",
                                 "material": "metal"
                             }
                         ]
@@ -191,7 +208,7 @@
             {
                 "position": [0, -1, 0],
                 "rotation": [0, 180, 0],
-                "scale": [1, 1, 1],
+                "scale": [3, 3, 3],
                 "components": [
                     {
                         "type": "Mesh Renderer",
