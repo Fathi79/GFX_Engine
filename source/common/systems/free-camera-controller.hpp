@@ -10,6 +10,8 @@
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
+#include "../components/wall.hpp"
+#include "../components/metal.hpp"
 
 namespace our
 {
@@ -44,14 +46,14 @@ namespace our
             Entity* entity = camera->getOwner();
 
             // If the left mouse button is pressed, we lock and hide the mouse. This common in First Person Games.
-            if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && !mouse_locked){
-                app->getMouse().lockMouse(app->getWindow());
-                mouse_locked = true;
-            // If the left mouse button is released, we unlock and unhide the mouse.
-            } else if(!app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && mouse_locked) {
-                app->getMouse().unlockMouse(app->getWindow());
-                mouse_locked = false;
-            }
+            // if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && !mouse_locked){
+            //     app->getMouse().lockMouse(app->getWindow());
+            //     mouse_locked = true;
+            // // If the left mouse button is released, we unlock and unhide the mouse.
+            // } else if(!app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && mouse_locked) {
+            //     app->getMouse().unlockMouse(app->getWindow());
+            //     mouse_locked = false;
+            // }
 
             // We get a reference to the entity's position and rotation
             glm::vec3& position = entity->localTransform.position;
@@ -72,10 +74,10 @@ namespace our
             // This could prevent floating point error if the player rotates in single direction for an extremely long time. 
             rotation.y = glm::wrapAngle(rotation.y);
 
-            // We update the camera fov based on the mouse wheel scrolling amount
-            float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
-            fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-            camera->fovY = fov;
+            // // We update the camera fov based on the mouse wheel scrolling amount
+            // float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
+            // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
+            // camera->fovY = fov;
 
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
             glm::mat4 matrix = entity->localTransform.toMat4();
@@ -84,20 +86,33 @@ namespace our
                       up = glm::vec3(matrix * glm::vec4(0, 1, 0, 0)), 
                       right = glm::vec3(matrix * glm::vec4(1, 0, 0, 0));
 
+
+            bool iscolide = iscollide(world,position);
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             if(app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT)) current_sensitivity *= controller->speedupFactor;
 
             // We change the camera position based on the keys WASD/QE
             // S & W moves the player back and forth
-            if(app->getKeyboard().isPressed(GLFW_KEY_W)) position += front * (deltaTime * current_sensitivity.z);
-            if(app->getKeyboard().isPressed(GLFW_KEY_S)) position -= front * (deltaTime * current_sensitivity.z);
+            if(app->getKeyboard().isPressed(GLFW_KEY_W)&&!iscolide) position += front * (deltaTime * current_sensitivity.z);
+            if(app->getKeyboard().isPressed(GLFW_KEY_S)&&!iscolide) position -= front * (deltaTime * current_sensitivity.z);
             // Q & E moves the player up and down
             if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
             if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
+
+            // rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
+            // rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
+
+
             // A & D moves the player left or right 
-            if(app->getKeyboard().isPressed(GLFW_KEY_D)) position += right * (deltaTime * current_sensitivity.x);
-            if(app->getKeyboard().isPressed(GLFW_KEY_A)) position -= right * (deltaTime * current_sensitivity.x);
+            if(app->getKeyboard().isPressed(GLFW_KEY_D)&&!iscolide) position += right * (deltaTime * current_sensitivity.x);
+            if(app->getKeyboard().isPressed(GLFW_KEY_A)&&!iscolide) position -= right * (deltaTime * current_sensitivity.x);
+
+           
+
+        
+       
+       
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
@@ -107,6 +122,50 @@ namespace our
                 app->getMouse().unlockMouse(app->getWindow());
             }
         }
+
+
+
+        //collision detecsion handling
+
+        bool iscollide(World*World, glm::vec3& position){
+
+           
+            
+         
+            
+            glm::vec3 wallPosition;
+            
+            auto entities = World->getEntities();
+            // for(auto entity : entities)
+            // {
+            //     if(entity->getComponent<metal>())
+            //     {
+            //         metalPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
+
+            //     }
+            // }
+
+            for(auto entity : entities)
+            {
+                if(entity->getComponent<wall>())
+                {
+                    wallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
+
+
+                    if(abs(position.x-wallPosition.x)<2.2&&abs(position.z-wallPosition.z)<0.1)
+                    {
+                        std::cout<<"hamzaaawe";
+                        return true;
+                    }
+                }
+
+            }
+            return false;
+    
+        }
+
+
+
 
     };
 

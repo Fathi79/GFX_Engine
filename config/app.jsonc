@@ -31,14 +31,17 @@
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
-                "walls":"assets/textures/wallbake.jpg"
+                "walls":"assets/textures/wallbake.jpg",
+                "wall":"assets/textures/trollwall.png"
+
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
                 "maze": "assets/models/maze.obj",
-                "sphere": "assets/models/sphere.obj"
+                "sphere": "assets/models/sphere.obj",
+                "wall":"assets/models/trollwall.obj"
             },
             "samplers":{
                 "default":{},
@@ -141,6 +144,21 @@
                     "tint": [1, 1, 1, 1],
                     "texture": "walls",
                     "sampler": "default"
+                },
+                "wall":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "wall",
+                    "sampler": "default"
                 }
 
 
@@ -148,7 +166,7 @@
         },
         "world":[
             {
-                "position": [0, 0, 10],
+                "position": [2, 2, 25],
                 "components": [
                     {
                         "type": "Camera"
@@ -161,49 +179,147 @@
                     {
                         "position": [1, -1, -1],
                         "rotation": [45, 45, 0],
-                        "scale": [0.1, 0.1, 1.0],
+                        "scale": [0.04, 0.04, 0.04],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
                                 "mesh": "cube",
                                 "material": "metal"
+                            },
+                            {
+                                "type":"metal"
                             }
                         ]
                     }
                 ]
             },
-            {
-                "rotation": [-45, 0, 0],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "monkey",
-                        "material": "monkey"
-                    },
-                    {
-                        "type": "Movement",
-                        "linearVelocity": [0, 0.1, 0],
-                        "angularVelocity": [0, 45, 0]
-                    }
-                ]
-            },
-            
-            {
+            {        
                 "position": [0, -1, 0],
                 "rotation": [0, 180, 0],
-                "scale": [1, 1, 1],
+                "scale": [0.01, 0.01, 0.01],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "maze",
-                        "material": "maze"
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
                     }
                 ]
             },
+            // {        
+            //     "position": [0, -1, -3],
+            //     "rotation": [0, 0, 0],
+            //     "scale": [0.01, 0.01, 0.01],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "wall",
+            //             "material": "wall"
+            //         },
+            //         {
+            //             "type": "wall"
+            //         }
+            //     ]
+            // },
+            // {        
+                
+            //     "position": [4.4, -1, 0],
+            //     "rotation": [0, 180, 0],
+            //     "scale": [0.01, 0.01, 0.01],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "wall",
+            //             "material": "wall"
+            //         },
+            //         {
+            //             "type": "wall"
+            //         }
+            //     ]
+            // },
+            // {        
+            //     "position": [6.6, -1, -2.2],
+            //     "rotation": [0, 270,0],
+            //     "scale": [0.01, 0.01, 0.01],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "wall",
+            //             "material": "wall"
+            //         },
+            //         {
+            //             "type": "wall"
+            //         }
+            //     ]
+            // },
+
+            // {        
+            //     "position": [2.2, -1, -5.2],
+            //     "rotation": [0, 90, 0],
+            //     "scale": [0.01, 0.01, 0.01],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "wall",
+            //             "material": "wall"
+            //         },
+            //         {
+            //             "type": "wall"
+            //         }
+            //     ]
+            // },
+            // {        
+            //     "position": [2.2, -1, -9.4],
+            //     "rotation": [0, 90, 0],
+            //     "scale": [0.01, 0.01, 0.01],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "wall",
+            //             "material": "wall"
+            //         },
+            //         {
+            //             "type": "wall"
+            //         }
+            //     ]
+            // },
+
+
+
+            // {
+            //     "rotation": [-45, 0, 0],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "monkey",
+            //             "material": "monkey"
+            //         },
+            //         {
+            //             "type": "Movement",
+            //             "linearVelocity": [0, 0.1, 0],
+            //             "angularVelocity": [0, 45, 0]
+            //         }
+            //     ]
+            // },
+            
+            // {
+            //     "position": [0, -1, 0],
+            //     "rotation": [0, 180, 0],
+            //     "scale": [2, 2, 2],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "maze",
+            //             "material": "maze"
+            //         }
+            //     ]
+            // },
             // {
             //     "position": [0, -1, 0],
             //     "rotation": [-90, 0, 0],
-            //     "scale": [10, 10, 1],
+            //     "scale": [10, 10, 100],
             //     "components": [
             //         {
             //             "type": "Mesh Renderer",
@@ -220,7 +336,7 @@
             //         {
             //             "type": "Mesh Renderer",
             //             "mesh": "plane",
-            //             "material": "glass"
+            //             "material": "maze"
             //         }
             //     ]
             // },

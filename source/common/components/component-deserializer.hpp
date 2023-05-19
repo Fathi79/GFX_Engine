@@ -5,6 +5,9 @@
 #include "mesh-renderer.hpp"
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
+#include"metal.hpp"
+#include"wall.hpp"
+
 
 namespace our {
 
@@ -22,6 +25,11 @@ namespace our {
             component = entity->addComponent<MovementComponent>();
         } else if (type == MeshRendererComponent::getID()) {
             component = entity->addComponent<MeshRendererComponent>();
+     
+        }else if (type == metal::getID()) {
+            component = entity->addComponent<metal>();
+        }else if (type == wall::getID()) {
+            component = entity->addComponent<wall>();
         }
         if(component) component->deserialize(data);
     }
