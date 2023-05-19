@@ -59,13 +59,7 @@ in Varyings {
 
 out vec4 frag_color;
 
-float lambert(vec3 normal, vec3 world_to_light_direction) {
-    return max(0.0, dot(normal, world_to_light_direction));
-}
 
-float phong(vec3 reflected, vec3 view, float shininess) {
-    return pow(max(0.0, dot(reflected, view)), shininess);
-}
 
 void main() {
     vec3 normal = normalize(fs_in.normal);
@@ -115,10 +109,10 @@ void main() {
             }
         }
 
-        vec3 computed_diffuse = light.color * diffuse * lambert(normal, world_to_light_dir);
+        vec3 computed_diffuse = light.color * diffuse * max(0.0, dot(normal, world_to_light_direction));
 
         vec3 reflected = reflect(-world_to_light_dir, normal);
-        vec3 computed_specular = light.color * specular * phong(reflected, view, shininess);
+        vec3 computed_specular = light.color * specular * pow(max(0.0, dot(reflected, view)), shininess);
 
         color += (computed_diffuse + computed_specular) * attenuation;
 

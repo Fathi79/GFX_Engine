@@ -237,6 +237,8 @@ namespace our {
             opaqueCommand.material->setup();
             ShaderProgram* shader = opaqueCommand.material->shader;
             shader->set("transform", mvpMatrix);
+            glm::mat4 M_IT = glm::transpose(glm::inverse(M));
+            shader->set("M_IT", M_IT);
             shader->set("light_count", lightsCount);
             //___________________________________________________________________________here is our light
             // find position and direction of light
@@ -259,7 +261,7 @@ namespace our {
             }
 
              // sending skylight data
-            // TODO 11 should these values be constants? or read them from jsonc???
+           
             shader->set("sky.top", sky_top);//TODO
             shader->set("sky.middle", sky_middle);//TODO
             shader->set("sky.bottom", sky_bottom);//TODO
@@ -317,7 +319,30 @@ namespace our {
             glm::mat4 modelMatrix = transparentCommand.localToWorld;
             glm::mat4 mvpMatrix = VP * modelMatrix;
             transparentCommand.material->setup();
-            transparentCommand.material->shader->set("transform", mvpMatrix);
+            ShaderProgram* shader =transparentCommand.material->shader;
+            shader->set("transform", mvpMatrix);
+            glm::mat4 M_IT = glm::transpose(glm::inverse(M));
+            shader->set("M_IT", M_IT);
+            // send lights count
+            shader->set("light_count", lightsCount);
+            for(int j = 0, k =0; j < (int)lights.size(); j++){
+                if(!(lights[j]->visible)){
+                    continue;
+                }
+                //TODO 11 check if correct - assumption: default light direction is bottom
+                glm::vec3 position = lights[j]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+
+                // TODO 11 should this be normalized???? - assuming default is down
+                glm::vec4 directionVector = lights[j]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
+                glm::vec3 direction = glm::vec3(directionVector.x, directionVector.y, directionVector.z);
+                
+                lights[j]->sendData(shader, k, direction, position);
+                k++;
+            }
+            shader->set("sky.top", sky_top);
+            shader->set("sky.middle", sky_middle);
+            shader->set("sky.bottom", sky_bottom);
+
             transparentCommand.mesh->draw();
         }
         // If there is a postprocess material, apply postprocessing
