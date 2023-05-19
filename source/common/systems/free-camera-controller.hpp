@@ -33,6 +33,7 @@ namespace our
         void update(World* world, float deltaTime) {
             // First of all, we search for an entity containing both a CameraComponent and a FreeCameraControllerComponent
             // As soon as we find one, we break
+            bool iscolide;
             CameraComponent* camera = nullptr;
             FreeCameraControllerComponent *controller = nullptr;
             for(auto entity : world->getEntities()){
@@ -63,7 +64,7 @@ namespace our
             // and use it to update the camera rotation
             if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1)){
                 glm::vec2 delta = app->getMouse().getMouseDelta();
-                rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
+                // rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
                 rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
             }
 
@@ -86,33 +87,28 @@ namespace our
                       up = glm::vec3(matrix * glm::vec4(0, 1, 0, 0)), 
                       right = glm::vec3(matrix * glm::vec4(1, 0, 0, 0));
 
-
-            bool iscolide = iscollide(world,position);
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             if(app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT)) current_sensitivity *= controller->speedupFactor;
 
-            // We change the camera position based on the keys WASD/QE
+            // We change the camera position based on the keys WS
             // S & W moves the player back and forth
-            if(app->getKeyboard().isPressed(GLFW_KEY_W)&&!iscolide) position += front * (deltaTime * current_sensitivity.z);
-            if(app->getKeyboard().isPressed(GLFW_KEY_S)&&!iscolide) position -= front * (deltaTime * current_sensitivity.z);
-            // Q & E moves the player up and down
-            if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
-            if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
+            if(app->getKeyboard().isPressed(GLFW_KEY_W)) position += front * (deltaTime * current_sensitivity.z);
+            iscolide = iscollide(world,position);
+            if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
 
-            // rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
-            // rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
+            if(app->getKeyboard().isPressed(GLFW_KEY_S)&&!iscolide) position -= front * (deltaTime * current_sensitivity.z);
+            iscolide = iscollide(world,position);
+            if(iscolide) position += front * (deltaTime * current_sensitivity.z);
 
 
             // A & D moves the player left or right 
-            if(app->getKeyboard().isPressed(GLFW_KEY_D)&&!iscolide) position += right * (deltaTime * current_sensitivity.x);
-            if(app->getKeyboard().isPressed(GLFW_KEY_A)&&!iscolide) position -= right * (deltaTime * current_sensitivity.x);
+            if(app->getKeyboard().isPressed(GLFW_KEY_D)) rotation.y -= deltaTime* 100 * controller->rotationSensitivity;
+            if(app->getKeyboard().isPressed(GLFW_KEY_A)) rotation.y += deltaTime* 100 * controller->rotationSensitivity;
 
-           
+            iscolide = iscollide(world,position);
+            if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
 
-        
-       
-       
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
@@ -129,21 +125,9 @@ namespace our
 
         bool iscollide(World*World, glm::vec3& position){
 
-           
-            
-         
-            
             glm::vec3 wallPosition;
             
             auto entities = World->getEntities();
-            // for(auto entity : entities)
-            // {
-            //     if(entity->getComponent<metal>())
-            //     {
-            //         metalPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
-
-            //     }
-            // }
 
             for(auto entity : entities)
             {
@@ -154,7 +138,6 @@ namespace our
 
                     if(abs(position.x-wallPosition.x)<2.2&&abs(position.z-wallPosition.z)<0.1)
                     {
-                        std::cout<<"hamzaaawe";
                         return true;
                     }
                 }
