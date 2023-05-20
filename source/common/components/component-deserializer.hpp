@@ -7,6 +7,8 @@
 #include "movement.hpp"
 #include"metal.hpp"
 #include"wall.hpp"
+#include"zwall.hpp"
+
 
 
 namespace our {
@@ -30,6 +32,8 @@ namespace our {
             component = entity->addComponent<metal>();
         }else if (type == wall::getID()) {
             component = entity->addComponent<wall>();
+        }else if (type == zwall::getID()) {
+            component = entity->addComponent<zwall>();
         }
         if(component) component->deserialize(data);
     }

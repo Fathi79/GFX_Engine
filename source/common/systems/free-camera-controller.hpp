@@ -12,6 +12,7 @@
 #include <glm/gtx/fast_trigonometry.hpp>
 #include "../components/wall.hpp"
 #include "../components/metal.hpp"
+#include "../components/zwall.hpp"
 
 namespace our
 {
@@ -64,7 +65,7 @@ namespace our
             // and use it to update the camera rotation
             if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1)){
                 glm::vec2 delta = app->getMouse().getMouseDelta();
-                // rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
+                rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
                 rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
             }
 
@@ -105,7 +106,14 @@ namespace our
             // A & D moves the player left or right 
             if(app->getKeyboard().isPressed(GLFW_KEY_D)) rotation.y -= deltaTime* 100 * controller->rotationSensitivity;
             if(app->getKeyboard().isPressed(GLFW_KEY_A)) rotation.y += deltaTime* 100 * controller->rotationSensitivity;
-            
+
+            // Q & E moves the player left or right (for building the maze)
+            if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
+            if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
+
+            iscolide = iscollide(world,position);
+            if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
+
             // Change the condition to reaching the exit
             if(app->getKeyboard().isPressed(GLFW_KEY_Q)) app->changeState("menu");
 
@@ -126,6 +134,8 @@ namespace our
         bool iscollide(World*World, glm::vec3& position){
 
             glm::vec3 wallPosition;
+            glm::vec3 zwallPosition;
+
             
             auto entities = World->getEntities();
 
@@ -137,6 +147,16 @@ namespace our
 
 
                     if(abs(position.x-wallPosition.x)<2.2&&abs(position.z-wallPosition.z)<0.1)
+                    {
+                        return true;
+                    }
+                }
+                if(entity->getComponent<zwall>())
+                {
+                    zwallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
+
+
+                    if(abs(position.x-zwallPosition.x)<0.1&&abs(position.z-zwallPosition.z)<2.2)
                     {
                         return true;
                     }

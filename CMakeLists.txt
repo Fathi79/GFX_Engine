@@ -86,6 +86,8 @@ set(COMMON_SOURCES
 
         source/common/components/wall.hpp
         source/common/components/wall.cpp
+        source/common/components/zwall.hpp
+        source/common/components/zwall.cpp
         source/common/components/metal.hpp
         source/common/components/metal.cpp
 
