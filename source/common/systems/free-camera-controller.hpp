@@ -115,7 +115,8 @@ namespace our
             if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
 
             // Change the condition to reaching the exit
-            if(app->getKeyboard().isPressed(GLFW_KEY_Q)) app->changeState("menu");
+            if(position.z < 7.5 && position.x > -16.5 && position.x < -12.6) app->changeState("menu");
+            std::cout << position.x <<", " << position.y <<", " << position.z << std::endl; 
 
         }
 
