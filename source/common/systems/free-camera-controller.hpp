@@ -105,9 +105,9 @@ namespace our
             // A & D moves the player left or right 
             if(app->getKeyboard().isPressed(GLFW_KEY_D)) rotation.y -= deltaTime* 100 * controller->rotationSensitivity;
             if(app->getKeyboard().isPressed(GLFW_KEY_A)) rotation.y += deltaTime* 100 * controller->rotationSensitivity;
-
-            iscolide = iscollide(world,position);
-            if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
+            
+            // Change the condition to reaching the exit
+            if(app->getKeyboard().isPressed(GLFW_KEY_Q)) app->changeState("menu");
 
         }
 
