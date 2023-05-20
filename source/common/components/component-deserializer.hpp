@@ -8,7 +8,7 @@
 #include"metal.hpp"
 #include"wall.hpp"
 #include"zwall.hpp"
-
+#include"light.hpp"
 
 
 namespace our {
@@ -34,6 +34,8 @@ namespace our {
             component = entity->addComponent<wall>();
         }else if (type == zwall::getID()) {
             component = entity->addComponent<zwall>();
+        }else if(type == LightComponent::getID()){
+            component = entity->addComponent<LightComponent>();
         }
         if(component) component->deserialize(data);
     }
