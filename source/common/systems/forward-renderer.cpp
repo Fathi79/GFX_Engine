@@ -88,11 +88,17 @@ namespace our {
             postprocessShader->attach(config.value<std::string>("postprocess", ""), GL_FRAGMENT_SHADER);
             postprocessShader->link();
 
+
+
+            Distorsion = texture_utils::loadImage(config.value<std::string>("PPtexture", "")); 
+
+
             // Create a post processing material
             postprocessMaterial = new TexturedMaterial();
             postprocessMaterial->shader = postprocessShader;
             postprocessMaterial->texture = colorTarget;
             postprocessMaterial->sampler = postprocessSampler;
+            
             // The default options are fine but we don't need to interact with the depth buffer
             // so it is more performant to disable the depth mask
             postprocessMaterial->pipelineState.depthMask = false;
@@ -109,7 +115,7 @@ namespace our {
             delete skyMaterial;
         }
         // Delete all objects related to post processing
-        if(postprocessMaterial){
+        if(postprocessMaterial && eman){
             glDeleteFramebuffers(1, &postprocessFrameBuffer);
             glDeleteVertexArrays(1, &postProcessVertexArray);
             delete colorTarget;
@@ -192,7 +198,7 @@ namespace our {
         // enable writing to depth buffer
         glDepthMask(true);
         // If there is a postprocess material, bind the framebuffer
-        if(postprocessMaterial){
+        if(postprocessMaterial && eman){
             //TODO: (Req 11) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
             
@@ -266,13 +272,27 @@ namespace our {
             transparentCommand.mesh->draw();
         }
         // If there is a postprocess material, apply postprocessing
-        if(postprocessMaterial){
+        if(postprocessMaterial&&eman){
+
+            glActiveTexture(GL_TEXTURE1);
+
+            Distorsion->bind();
+            postprocessMaterial->sampler->bind(1);
+            postprocessMaterial->shader->set("additional_sampler",1);
+
+            
+
+
+
             //TODO: (Req 11) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);       
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
             glBindVertexArray(postProcessVertexArray);
             glDrawArrays(GL_TRIANGLES,0,3);
+
+
+
             
         }
     }

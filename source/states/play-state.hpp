@@ -5,6 +5,7 @@
 #include <ecs/world.hpp>
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
+#include <systems/scarecrow-controller.hpp>
 #include <systems/movement.hpp>
 #include <asset-loader.hpp>
 
@@ -14,6 +15,7 @@ class Playstate: public our::State {
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
+    our::ScareCrowControllerSystem scController;
     our::MovementSystem movementSystem;
 
     void onInitialize() override {
@@ -38,6 +40,7 @@ class Playstate: public our::State {
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
+        scController.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
 
@@ -47,6 +50,11 @@ class Playstate: public our::State {
         if(keyboard.justPressed(GLFW_KEY_ESCAPE)){
             // If the escape  key is pressed in this frame, go to the play state
             getApp()->changeState("menu");
+        }
+        //std::cout<<cameraController.f<<std::endl;
+        if(cameraController.f){
+            std::cout<<"In collide"<<std::endl;
+            renderer.eEman();
         }
     }
 
