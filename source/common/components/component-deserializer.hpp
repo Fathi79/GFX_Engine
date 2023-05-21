@@ -10,6 +10,7 @@
 #include "zwall.hpp"
 #include "scarecrow.hpp"
 #include "scarecrow-controller.hpp"
+#include"light.hpp"
 
 
 namespace our {
@@ -34,6 +35,8 @@ namespace our {
             component = entity->addComponent<wall>();
         }else if (type == zwall::getID()) {
             component = entity->addComponent<zwall>();
+        }else if(type == LightComponent::getID()){
+            component = entity->addComponent<LightComponent>();
         }
         else if (type == scarecrow::getID()) {
             component = entity->addComponent<scarecrow>();

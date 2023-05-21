@@ -2,8 +2,10 @@
 
 #include "../ecs/world.hpp"
 #include "../components/camera.hpp"
+#include "../components/light.hpp"
 #include "../components/mesh-renderer.hpp"
 #include "../asset-loader.hpp"
+#include "../material/material.hpp"
 
 #include <glad/gl.h>
 #include <vector>
@@ -40,8 +42,18 @@ namespace our
         GLuint postprocessFrameBuffer, postProcessVertexArray;
         Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
+        // Objects used for distortion
         Texture2D* Distorsion;
         bool eman=false;
+        // Objects used to support lighting
+        std::vector<LightComponent*> lightSources;
+        LitMaterial* lightMaterial;
+        glm::vec3 skyTop;
+        glm::vec3 skyMiddle;
+        glm::vec3 skyBottom;
+
+        
+
     public:
         void eEman(){eman=!eman;}
         // Initialize the renderer including the sky and the Postprocessing objects.
@@ -51,6 +63,24 @@ namespace our
         void destroy();
         // This function should be called every frame to draw the given world
         void render(World* world);
+        /// read material sky from json
+          void deserialize(const nlohmann::json &data) 
+        {
+            if (data.contains("skyTop"))
+            {
+            
+               skyTop= glm::vec3 (data["skyTop"][0],data["skyTop"][1],data["skyTop"][2]  );
+            }
+            if (data.contains("skyMiddle"))
+            {
+               skyMiddle= glm::vec3 (data["skyMiddle"][0],data["skyMiddle"][1],data["skyMiddle"][2]  );
+            }
+            if (data.contains("skyBottom"))
+            {
+               skyBottom= glm::vec3 (data["skyBottom"][0],data["skyBottom"][1],data["skyBottom"][2]  );
+            }
+
+        }
 
 
     };
