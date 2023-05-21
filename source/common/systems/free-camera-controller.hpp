@@ -127,7 +127,7 @@ namespace our
             // if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
 
             // Change the condition to reaching the exit
-            if(position.z < -9.5 && position.x > -5.5 && position.x < -4.8) app->changeState("menu");
+            if(position.z < -9.5 && position.x > -5.5 && position.x < -4.8) app->changeState("win");
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
@@ -156,7 +156,7 @@ namespace our
                     crowPosition = glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
                     if(abs(position.x-crowPosition.x)<0.4 && abs(position.z-crowPosition.z)<0.1)
                     {
-                        app->changeState("menu");
+                        app->changeState("loser");
                     }
                 }
                 if(entity->getComponent<wall>())
