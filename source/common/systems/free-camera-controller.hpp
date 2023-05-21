@@ -13,6 +13,8 @@
 #include "../components/wall.hpp"
 #include "../components/metal.hpp"
 #include "../components/zwall.hpp"
+#include "../components/scarecrow.hpp"
+
 
 namespace our
 {
@@ -22,19 +24,23 @@ namespace our
     // For more information, see "common/components/free-camera-controller.hpp"
     class FreeCameraControllerSystem {
         Application* app; // The application in which the state runs
-        bool mouse_locked = false; // Is the mouse locked
+        bool mouse_locked = false; // Is the mouse locked  
 
     public:
+        bool iscolide;
+        bool f=false;
+
+
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application* app){
             this->app = app;
+
         }
 
         // This should be called every frame to update all entities containing a FreeCameraControllerComponent 
         void update(World* world, float deltaTime) {
             // First of all, we search for an entity containing both a CameraComponent and a FreeCameraControllerComponent
             // As soon as we find one, we break
-            bool iscolide;
             CameraComponent* camera = nullptr;
             FreeCameraControllerComponent *controller = nullptr;
             for(auto entity : world->getEntities()){
@@ -47,15 +53,6 @@ namespace our
             // Get the entity that we found via getOwner of camera (we could use controller->getOwner())
             Entity* entity = camera->getOwner();
 
-            // If the left mouse button is pressed, we lock and hide the mouse. This common in First Person Games.
-            // if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && !mouse_locked){
-            //     app->getMouse().lockMouse(app->getWindow());
-            //     mouse_locked = true;
-            // // If the left mouse button is released, we unlock and unhide the mouse.
-            // } else if(!app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && mouse_locked) {
-            //     app->getMouse().unlockMouse(app->getWindow());
-            //     mouse_locked = false;
-            // }
 
             // We get a reference to the entity's position and rotation
             glm::vec3& position = entity->localTransform.position;
@@ -81,19 +78,18 @@ namespace our
             // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
             // camera->fovY = fov;
             float fov;
-           static bool f =false;
             if (app->getKeyboard().justPressed(GLFW_KEY_LEFT_SHIFT)&&app->getKeyboard().isPressed(GLFW_KEY_W))
             {   
                 f=true;
-                fov = camera->fovY + 0.99*1.2;
-                fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-                camera->fovY = fov;
+                // fov = camera->fovY + 0.99*1.2;
+                // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
+                // camera->fovY = fov;
             }
             if(app->getKeyboard().justReleased(GLFW_KEY_LEFT_SHIFT)&&app->getKeyboard().isPressed(GLFW_KEY_W)&&f){
                 f=false;
-                fov = camera->fovY- 0.99*1.2;
-                fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-                camera->fovY = fov;
+                // fov = camera->fovY- 0.99*1.2;
+                // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
+                // camera->fovY = fov;
             }
          
             
@@ -127,13 +123,11 @@ namespace our
             if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
             if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
 
-            iscolide = iscollide(world,position);
-            if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
+            // iscolide = iscollide(world,position);
+            // if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
 
             // Change the condition to reaching the exit
-            if(position.z < 7.5 && position.x > -16.5 && position.x < -12.6) app->changeState("menu");
-            std::cout << position.x <<", " << position.y <<", " << position.z << std::endl; 
-
+            if(position.z < -9.5 && position.x > -5.5 && position.x < -4.8) app->changeState("menu");
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
@@ -146,18 +140,25 @@ namespace our
 
 
 
-        //collision detecsion handling
-
+        // Collision detection handling
         bool iscollide(World*World, glm::vec3& position){
 
             glm::vec3 wallPosition;
             glm::vec3 zwallPosition;
-
+            glm::vec3 crowPosition;
             
             auto entities = World->getEntities();
 
             for(auto entity : entities)
             {
+                if(entity->getComponent<scarecrow>())
+                {
+                    crowPosition = glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
+                    if(abs(position.x-crowPosition.x)<0.4 && abs(position.z-crowPosition.z)<0.1)
+                    {
+                        app->changeState("menu");
+                    }
+                }
                 if(entity->getComponent<wall>())
                 {
                     wallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
