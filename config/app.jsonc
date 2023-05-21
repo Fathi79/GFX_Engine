@@ -23,6 +23,10 @@
                 "textured":{
                     "vs":"assets/shaders/textured.vert",
                     "fs":"assets/shaders/textured.frag"
+                },
+                "lighted":{
+                    "vs":"assets/shaders/lighted.vert",
+                    "fs":"assets/shaders/lighted.frag"
                 }
             },
             "textures":{
@@ -33,7 +37,14 @@
                 "monkey": "assets/textures/monkey.png",
                 "walls":"assets/textures/wallbake.jpg",
                 "wall":"assets/textures/T_AncientWall_Color.png",
-                "floor":"assets/textures/topSeamless.png"
+                "floor":"assets/textures/topSeamless.png",
+                "white": "assets/textures/white.jpg",
+                "specular": "assets/textures/specular.jpg",
+                "ambient_occlusion": "assets/textures/ambient_occlusion.jpg",
+                "emissive":"assets/textures/emissive.jpg",
+                "roughness":"assets/textures/roughness.jpg",
+                "black":"assets/textures/black.jpg",
+                "albedo":"assets/textures/albedo.jpg"
                 
 
             },
@@ -104,8 +115,8 @@
                     "sampler": "default"
                 },
                 "monkey":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -115,8 +126,11 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "monkey",
-                    "sampler": "default"
+                    "sampler": "default",
+                    "albedo" :"monkey",
+                    "roughness":"roughness",
+                    "specular":"white",
+                    "ambient_occlusion":"black"
                 },
                 "moon":{
                     "type": "textured",
@@ -149,8 +163,8 @@
                     "sampler": "default"
                 },
                 "wall":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -160,12 +174,15 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "wall",
-                    "sampler": "default"
+                    "sampler": "default",
+                    "albedo" :"wall",
+                    "roughness":"roughness",
+                    "specular":"white",
+                    "ambient_occlusion":"black"
                 },
                 "floor":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -175,7 +192,10 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "floor",
+                    "albedo" :"floor",
+                    "roughness":"roughness",
+                    "specular":"white",
+                    "ambient_occlusion":"black",
                     "sampler": "default"
                 }
 
@@ -190,6 +210,22 @@
                     },
                     {
                         "type": "Free Camera Controller"
+                    },
+                    // {
+                    //     "type": "light",
+                    //     "typeOfLight": "DIRECTIONAL",
+                    //     "diffuse": [0.1, 0.1, 0.1],
+                    //     "specular": [0.1, 0.1, 0.1]
+                    //   }
+                    //   ,
+                    {
+                      "type": "light",
+                      "typeOfLight": "SPOT",
+                      "diffuse": [0, 0, 0.1],
+                      "specular": [0, 0, 0.1],
+                      "attenuation": [0.00001, 0.00001, 0.00001],
+                      "cone_angles.in":30,
+                      "cone_angles.out":50
                     }
                 ]
                 // "children": [
@@ -210,7 +246,22 @@
                 //     }
                 // ]
             },       
-
+            {
+                "rotation": [-45, 0, 0],
+                "scale": [3, 3, 3],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "monkey",
+                        "material": "monkey"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0, 0.1, 0],
+                        "angularVelocity": [0, 45, 0]
+                    }
+                ]
+            },
             {        
                 "position": [-5, -1.2, -5],
                 "rotation": [0,270 , 0],
@@ -2931,6 +2982,8 @@
                 ]
             },
 
+            
+
 //             {        
 //                 "position": [2.2, -1, 38.4],
 //                 "rotation": [0,180, 0],
@@ -3828,7 +3881,7 @@
             {
                 "position": [0, 10, 0],
                 "rotation": [45, 45, 0],
-                "scale": [5, 5, 5],
+                "scale": [2,2, 2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -3838,7 +3891,15 @@
                     {
                         "type": "Movement",
                         "angularVelocity": [0, 90, 0]
-                    }
+                    },{
+                        "type": "light",
+                        "typeOfLight": "POINT",
+                        "diffuse": [1, 1,1],
+                        "specular": [1, 1,1],
+                        "attenuation": [0.01, 0.01, 0.01]
+                        
+                      }
+                      
                 ]
             }
         ]
