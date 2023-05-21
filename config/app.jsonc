@@ -221,11 +221,11 @@
                     {
                       "type": "light",
                       "typeOfLight": "SPOT",
-                      "diffuse": [0, 0, 0.1],
-                      "specular": [0, 0, 0.1],
-                      "attenuation": [0.00001, 0.00001, 0.00001],
-                      "cone_angles.in":30,
-                      "cone_angles.out":50
+                      "diffuse": [0.02, 0.02, 0],
+                      "specular": [0.02, 0.02, 0],
+                      "attenuation": [0.001, 0.001, 0.001],
+                      "cone_angles.in":50,
+                      "cone_angles.out":60
                     }
                 ]
                 // "children": [
@@ -246,22 +246,22 @@
                 //     }
                 // ]
             },       
-            {
-                "rotation": [-45, 0, 0],
-                "scale": [3, 3, 3],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "monkey",
-                        "material": "monkey"
-                    },
-                    {
-                        "type": "Movement",
-                        "linearVelocity": [0, 0.1, 0],
-                        "angularVelocity": [0, 45, 0]
-                    }
-                ]
-            },
+            // {
+            //     "rotation": [-45, 0, 0],
+            //     "scale": [3, 3, 3],
+            //     "components": [
+            //         {
+            //             "type": "Mesh Renderer",
+            //             "mesh": "monkey",
+            //             "material": "monkey"
+            //         },
+            //         {
+            //             "type": "Movement",
+            //             "linearVelocity": [0, 0.1, 0],
+            //             "angularVelocity": [0, 45, 0]
+            //         }
+            //     ]
+            // },
             {        
                 "position": [-5, -1.2, -5],
                 "rotation": [0,270 , 0],
@@ -3894,8 +3894,8 @@
                     },{
                         "type": "light",
                         "typeOfLight": "POINT",
-                        "diffuse": [1, 1,1],
-                        "specular": [1, 1,1],
+                        "diffuse": [0.7, 0.7,0.7],
+                        "specular": [0.7, 0.7,0.7],
                         "attenuation": [0.01, 0.01, 0.01]
                         
                       }

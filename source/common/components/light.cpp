@@ -14,7 +14,7 @@ namespace our
             return;
 
         lightTypeStr = data.value("typeOfLight", "DIRECTIONAL");
-
+        direction =glm::vec3(data.value("direction", glm::vec3(1, 1, 1)));
         if (lightTypeStr == "DIRECTIONAL")
             lightType = 0;
 

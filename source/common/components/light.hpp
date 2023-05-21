@@ -18,6 +18,7 @@ namespace our {
     public:
         int lightType; // The type of the light
         glm::vec3 diffuse;
+        glm::vec3 direction;
         glm::vec3 specular;
         glm::vec4 color;
         glm::vec3 attenuation; // x*d^2 + y*d + z
