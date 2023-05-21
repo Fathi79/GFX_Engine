@@ -132,7 +132,7 @@ namespace our
 
             // Change the condition to reaching the exit
             if(position.z < 7.5 && position.x > -16.5 && position.x < -12.6) app->changeState("menu");
-            // std::cout << position.x <<", " << position.y <<", " << position.z << std::endl; 
+            std::cout << position.x <<", " << position.y <<", " << position.z << std::endl; 
 
         }
 

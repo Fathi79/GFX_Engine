@@ -248,7 +248,7 @@ int our::Application::run(int run_for_frames) {
     if (result != MA_SUCCESS) {
         return -1;  // Failed to initialize the engine.
     }
-    ma_engine_play_sound(pEngine, "aassets/music/almas.mp3", NULL);
+    ma_engine_play_sound(pEngine, "assets/music/almas.mp3", NULL);
 
     //Game loop
     while(!glfwWindowShouldClose(window)){
