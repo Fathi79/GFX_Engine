@@ -65,8 +65,8 @@ namespace our
             // and use it to update the camera rotation
             if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1)){
                 glm::vec2 delta = app->getMouse().getMouseDelta();
-                rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
-                rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
+                //rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
+                //rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
             }
 
             // We prevent the pitch from exceeding a certain angle from the XZ plane to prevent gimbal locks
@@ -76,11 +76,27 @@ namespace our
             // This could prevent floating point error if the player rotates in single direction for an extremely long time. 
             rotation.y = glm::wrapAngle(rotation.y);
 
-            // // We update the camera fov based on the mouse wheel scrolling amount
-            // float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
+            // We update the camera fov based on the mouse wheel scrolling amount
+            // float fov = camera->fovY + app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT) * controller->fovSensitivity;
             // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
             // camera->fovY = fov;
-
+            float fov;
+           static bool f =false;
+            if (app->getKeyboard().justPressed(GLFW_KEY_LEFT_SHIFT)&&app->getKeyboard().isPressed(GLFW_KEY_W))
+            {   
+                f=true;
+                fov = camera->fovY + 0.99*1.2;
+                fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
+                camera->fovY = fov;
+            }
+            if(app->getKeyboard().justReleased(GLFW_KEY_LEFT_SHIFT)&&app->getKeyboard().isPressed(GLFW_KEY_W)&&f){
+                f=false;
+                fov = camera->fovY- 0.99*1.2;
+                fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
+                camera->fovY = fov;
+            }
+         
+            
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
             glm::mat4 matrix = entity->localTransform.toMat4();
 
@@ -90,31 +106,33 @@ namespace our
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
-            if(app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT)) current_sensitivity *= controller->speedupFactor;
+            if(app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT)) current_sensitivity *= controller->speedupFactor*1.2;
 
             // We change the camera position based on the keys WS
             // S & W moves the player back and forth
-            if(app->getKeyboard().isPressed(GLFW_KEY_W)) position += front * (deltaTime * current_sensitivity.z);
+            if(app->getKeyboard().isPressed(GLFW_KEY_W)) position += glm::vec3(0.2,0.2,0.2)*front * (deltaTime * (current_sensitivity.z));
             iscolide = iscollide(world,position);
-            if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
+            if(iscolide) position -= glm::vec3(0.2,0.2,0.2)*front * (deltaTime * current_sensitivity.z);
 
-            if(app->getKeyboard().isPressed(GLFW_KEY_S)&&!iscolide) position -= front * (deltaTime * current_sensitivity.z);
+            if(app->getKeyboard().isPressed(GLFW_KEY_S)&&!iscolide) position -= glm::vec3(0.2,0.2,0.2)*front * (deltaTime * current_sensitivity.z);
             iscolide = iscollide(world,position);
-            if(iscolide) position += front * (deltaTime * current_sensitivity.z);
+            if(iscolide) position += glm::vec3(0.2,0.2,0.2)*front * (deltaTime * current_sensitivity.z);
 
 
             // A & D moves the player left or right 
-            if(app->getKeyboard().isPressed(GLFW_KEY_D)) rotation.y -= deltaTime* 100 * controller->rotationSensitivity;
-            if(app->getKeyboard().isPressed(GLFW_KEY_A)) rotation.y += deltaTime* 100 * controller->rotationSensitivity;
+            if(app->getKeyboard().isPressed(GLFW_KEY_D)) rotation.y -= deltaTime* 200 * controller->rotationSensitivity;
+            if(app->getKeyboard().isPressed(GLFW_KEY_A)) rotation.y += deltaTime* 200 * controller->rotationSensitivity;
 
-
-
-            // A & D moves the player left or right 
+            // Q & E moves the player left or right (for building the maze)
             if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
             if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
 
             iscolide = iscollide(world,position);
             if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
+
+            // Change the condition to reaching the exit
+            if(position.z < 7.5 && position.x > -16.5 && position.x < -12.6) app->changeState("menu");
+            // std::cout << position.x <<", " << position.y <<", " << position.z << std::endl; 
 
         }
 
@@ -145,7 +163,7 @@ namespace our
                     wallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
 
 
-                    if(abs(position.x-wallPosition.x)<2.2&&abs(position.z-wallPosition.z)<0.1)
+                    if(abs(position.x-wallPosition.x)<0.45&&abs(position.z-wallPosition.z)<0.1)
                     {
                         return true;
                     }
@@ -155,7 +173,7 @@ namespace our
                     zwallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
 
 
-                    if(abs(position.x-zwallPosition.x)<0.1&&abs(position.z-zwallPosition.z)<2.2)
+                    if(abs(position.x-zwallPosition.x)<0.1&&abs(position.z-zwallPosition.z)<0.45)
                     {
                         return true;
                     }

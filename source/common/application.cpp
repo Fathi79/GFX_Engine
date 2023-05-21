@@ -9,6 +9,8 @@
 #include <queue>
 #include <tuple>
 #include <filesystem>
+#define MINIAUDIO_IMPLEMENTATION
+#include <miniaudio.h>
 
 #include <flags/flags.h>
 
@@ -239,6 +241,15 @@ int our::Application::run(int run_for_frames) {
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
 
+    ma_result result;
+    ma_engine* pEngine = new ma_engine();
+
+    result = ma_engine_init(NULL, pEngine);
+    if (result != MA_SUCCESS) {
+        return -1;  // Failed to initialize the engine.
+    }
+    ma_engine_play_sound(pEngine, "aassets/music/almas.mp3", NULL);
+
     //Game loop
     while(!glfwWindowShouldClose(window)){
 
@@ -332,6 +343,7 @@ int our::Application::run(int run_for_frames) {
 
     // Call for cleaning up
     if(currentState) currentState->onDestroy();
+    delete pEngine;
 
     // Shutdown ImGui & destroy the context
     ImGui_ImplOpenGL3_Shutdown();

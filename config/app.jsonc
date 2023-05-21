@@ -11,7 +11,7 @@
     },
     "scene": {
         "renderer":{
-            "sky": "assets/textures/sky.jpg",
+            "sky": "assets/textures/n8sky.jpg",
             "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets":{
@@ -32,8 +32,9 @@
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
                 "walls":"assets/textures/wallbake.jpg",
-                "wall":"assets/textures/trollwall.png",
-                "floor":"assets/textures/albedo.png"
+                "wall":"assets/textures/T_AncientWall_Color.png",
+                "floor":"assets/textures/topSeamless.png"
+                
 
             },
             "meshes":{
@@ -42,8 +43,8 @@
                 "plane": "assets/models/plane.obj",
                 "maze": "assets/models/maze.obj",
                 "sphere": "assets/models/sphere.obj",
-                "wall":"assets/models/trollwall.obj",
-                "floor":"assets/models/tileable.obj"
+                "wall":"assets/models/AncientWallFBX.OBJ",
+                "floor":"assets/models/Final.obj"
             },
             "samplers":{
                 "default":{},
@@ -182,7 +183,7 @@
         },
         "world":[
             {
-                "position": [2, 0, 29],
+                "position": [-4.4, 0.2, -1],
                 "components": [
                     {
                         "type": "Camera"
@@ -211,9 +212,9 @@
             },       
 
             {        
-                "position": [0, -1, 40],
-                "rotation": [0, 270, 0],
-                "scale": [0.15, 0, 0.15],
+                "position": [-5, -1.2, -5],
+                "rotation": [0,270 , 0],
+                "scale": [0.01, 0.01, 0.01],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -224,11 +225,30 @@
             },   
 
 
-
             {        
-                "position": [5, -1, 27.4],
+                "position": [-4.4, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+///////////////////rightSide
+            {        
+                "position": [0, 0, 0],
                 "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -240,11 +260,175 @@
                     }
                 ]
             },   
-
             {        
-                "position": [2.2, -1, 38.4],
-                "rotation": [0,180, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "position": [0, 0, -0.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [0, 0, -1.6],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [0, 0, -2.4],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [0, 0, -3.2],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [0, 0, -4],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },    
+            {        
+                "position": [0, 0, -4.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },              
+            {        
+                "position": [0, 0, -5.6],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },              
+            {        
+                "position": [0, 0, -6.4],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [0, 0, -7.2],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },    
+            {        
+                "position": [0, 0, -8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [0, 0, -8.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-0.4, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -255,11 +439,101 @@
                         "type": "wall"
                     }
                 ]
-            },    
+            },   
             {        
-                "position": [4.4, -1, 38.4],
-                "rotation": [0,180, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "position": [-5.2, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-1.2, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-2, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-2.8, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-2.8, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-3.6, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-4.4, 0, -9.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -271,90 +545,15 @@
                     }
                 ]
             },  
-            {        
-                "position": [5, -1, 31.8],
-                "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-            {        
-                "position": [5, -1, 36.2],
-                "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
+/////////////////////////
+//2nd column
 
-            // {        
-            //     "position": [0, -1, 27.4],
-            //     "rotation": [0, 90, 0],
-            //     "scale": [0.01, 0.01, 0.01],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "wall",
-            //             "material": "wall"
-            //         },
-            //         {
-            //             "type": "zwall"
-            //         }
-            //     ]
-            // },    
-            {        
-                "position": [0, -1, 31.8],
-                "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-            {        
-                "position": [0, -1, 36.2],
-                "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-            
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///right side
+
 
             {        
-                "position": [5, -1, 23],
-                "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "position": [-0.8, 0, -4],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -365,11 +564,11 @@
                         "type": "zwall"
                     }
                 ]
-            },
+            },    
             {        
-                "position": [5, -1, 18.6],
-                "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "position": [-0.8, 0, -4.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -380,11 +579,11 @@
                         "type": "zwall"
                     }
                 ]
-            },
+            },              
             {        
-                "position": [5, -1, 14.2],
-                "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "position": [-0.8, 0, -5.6],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -395,11 +594,11 @@
                         "type": "zwall"
                     }
                 ]
-            },
+            },              
             {        
-                "position": [5, -1, 9.8],
-                "rotation": [0, 270, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "position": [-0.8, 0, -6.4],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -410,13 +609,61 @@
                         "type": "zwall"
                     }
                 ]
-            },
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-                //back side
+            },   
             {        
-                "position": [2.8, -1, 7.6],
+                "position": [-0.8, 0, -7.2],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },    
+            {        
+                "position": [-0.8, 0, -8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+
+
+////////////////////////////
+
+
+            {        
+                "position": [-1.6, 0, -3.2],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },    
+            {        
+                "position": [-1.2, 0, -3.6],
                 "rotation": [0, 0, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -427,122 +674,318 @@
                         "type": "wall"
                     }
                 ]
-            },
-            {        
-                "position": [-1.6, -1, 7.6],
-                "rotation": [0, 0, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "wall"
-                    }
-                ]
-            },
-            {        
-                "position": [-6.0, -1, 7.6],
-                "rotation": [0, 0, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "wall"
-                    }
-                ]
-            },
-            {        
-                "position": [-10.4, -1, 7.6],
-                "rotation": [0, 0, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "wall"
-                    }
-                ]
-            },
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-                //front side
-                {        
-                    "position": [-2.2, -1, 29.6],
-                    "rotation": [0, 180, 0],
-                    "scale": [0.01, 0.01, 0.01],
-                    "components": [
-                        {
-                            "type": "Mesh Renderer",
-                            "mesh": "wall",
-                            "material": "wall"
-                        },
-                        {
-                            "type": "wall"
-                        }
-                    ]
-                },
-                {        
-                    "position": [-6.6, -1, 29.6],
-                    "rotation": [0, 180, 0],
-                    "scale": [0.01, 0.01, 0.01],
-                    "components": [
-                        {
-                            "type": "Mesh Renderer",
-                            "mesh": "wall",
-                            "material": "wall"
-                        },
-                        {
-                            "type": "wall"
-                        }
-                    ]
-                },
-                {        
-                    "position": [-10, -1, 29.6],
-                    "rotation": [0, 180, 0],
-                    "scale": [0.01, 0.01, 0.01],
-                    "components": [
-                        {
-                            "type": "Mesh Renderer",
-                            "mesh": "wall",
-                            "material": "wall"
-                        },
-                        {
-                            "type": "wall"
-                        }
-                    ]
-                },
-                {        
-                    "position": [-14.4, -1, 29.6],
-                    "rotation": [0, 180, 0],
-                    "scale": [0.01, 0.01, 0.01],
-                    "components": [
-                        {
-                            "type": "Mesh Renderer",
-                            "mesh": "wall",
-                            "material": "wall"
-                        },
-                        {
-                            "type": "wall"
-                        }
-                    ]
-                },
+            },  
+
+
+////////////////////////////////////////////////
+/////3rd column
+
+
+{        
+    "position": [-1.6, 0, -4.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+
+
+
+{        
+    "position": [-1.6, 0, -5.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+
+{        
+    "position": [-1.6, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+{        
+    "position": [-1.6, 0, -8.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+
+
+{        
+    "position": [-1.2, 0, -7.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-2, 0, -7.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-2, 0, -5.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+{        
+    "position": [-2.8, 0, -5.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-2, 0, -4.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+
 //////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////leftSide
+//4th column
 
-            {        
-                "position": [-16.6, -1, 27.4],
+{        
+    "position": [-2.4, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},   
+{        
+    "position": [-2.4, 0, -7.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},    
+{        
+    "position": [-2.4, 0, -8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},   
+{        
+    "position": [-2.8, 0, -8.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},   
+{        
+    "position": [-2.8, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},   
+{        
+    "position": [-3.6, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},   
+{        
+    "position": [-2.8, 0, -3.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},   
+{        
+    "position": [-3.6, 0, -3.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-2.4, 0, -4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},   
+
+/////////////////////////////////////////5th column
+{        
+                "position": [-3.2, 0, -2.4],
                 "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-3.2, 0, -3.2],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -554,417 +997,2664 @@
                     }
                 ]
             },
+            {        
+                "position": [-3.6, 0, -2.8],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },
+            {        
+                "position": [-4.4, 0, -2.8],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },
+
+            {        
+                "position": [-3.6, 0, -7.6],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },
+
+
+
+
+            {        
+                "position": [-3.2, 0, -7.2],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },
+
+///////////////////////////////6th column
+
+
+{        
+    "position": [-4, 0, -8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-4, 0, -8.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-4, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-4, 0, -5.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-4, 0, -4.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-4.4, 0, -4.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-5.2, 0, -4.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-3.6, 0, -4.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-4.4, 0, -5.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+////////////////////////////7th
+
+
+{        
+    "position": [-4.8, 0, -8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},   
+{        
+    "position": [-4.8, 0, -7.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},   
+{        
+    "position": [-4.8, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+
+{        
+    "position": [-5.2, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-6, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+{        
+    "position": [-6.8, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-7.6, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-8.4, 0, -6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+
+{        
+    "position": [-4.8, 0, -4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+{        
+    "position": [-5.2, 0, -3.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-4.8, 0, 0],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+{        
+    "position": [-4.8, 0, -0.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},  
+{        
+    "position": [-4.8, 0, -1.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+{        
+    "position": [-4.8, 0, -2.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},   
+{        
+    "position": [-5.2, 0, -1.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-6, 0, -1.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-5.2, 0, -2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-6, 0, -2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-6.8, 0, -2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-7.6, 0, -2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+
+
+
+{        
+    "position": [-5.2, 0, 0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},  
+{        
+    "position": [-6, 0, 0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-6.8, 0, 0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-7.6, 0, 0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-8.4, 0, 0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-9.2, 0, 0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+// {        
+//     "position": [-10, 0, 0.4],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.001, 0.001, 0.001],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
+
+
+
+
+{        
+    "position": [-6, 0, -9.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-6.8, 0, -9.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-7.6, 0, -9.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-8.4, 0, -9.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-9.2, 0, -9.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+////////////////////////////////////////////8th
+
+{        
+    "position": [-5.6, 0, -8.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+{        
+    "position": [-6.4, 0, -8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+
+
+{        
+    "position": [-5.6, 0, -7.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-6, 0, -7.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+
+
+{        
+    "position": [-5.6, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+{        
+    "position": [-5.6, 0, -5.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+{        
+    "position": [-5.6, 0, -4.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-6, 0, -5.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, {        
+    "position": [-6.8, 0, -5.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+
+
+
+
+{        
+    "position": [-5.6, 0, -3.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-6, 0, -2.8],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+{        
+    "position": [-6.4, 0, -3.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+{        
+    "position": [-6.4, 0, -4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+
+{        
+    "position": [-6.8, 0, -4.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+}, 
+///////////////////////////9th
+
+{
+"position": [-7.2, 0, -8.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+}, 
+{
+    "position": [-7.6, 0, -8.4],
+        "rotation": [0, 0, 0],
+        "scale": [0.001, 0.001, 0.001],
+        "components": [
+            {
+                "type": "Mesh Renderer",
+                "mesh": "wall",
+                "material": "wall"
+            },
+            {
+                "type": "wall"
+            }
+        ]
+}, 
+    {
+        "position": [-8.4, 0, -8.4],
+            "rotation": [0, 0, 0],
+            "scale": [0.001, 0.001, 0.001],
+            "components": [
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "wall",
+                    "material": "wall"
+                },
+                {
+                    "type": "wall"
+                }
+            ]
+    }, 
+
+
+{
+    "position": [-7.2, 0, -8],
+        "rotation": [0, 90, 0],
+        "scale": [0.001, 0.001, 0.001],
+        "components": [
+            {
+                "type": "Mesh Renderer",
+                "mesh": "wall",
+                "material": "wall"
+            },
+            {
+                "type": "zwall"
+            }
+        ]
+    }, 
+{
+    "position": [-7.2, 0, -7.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+
+{
+    "position": [-6.8, 0, -6.8],
+        "rotation": [0, 0, 0],
+        "scale": [0.001, 0.001, 0.001],
+        "components": [
+            {
+                "type": "Mesh Renderer",
+                "mesh": "wall",
+                "material": "wall"
+            },
+            {
+                "type": "wall"
+            }
+        ]
+}, 
+
+{
+    "position": [-7.2, 0, -0.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+{
+    "position": [-7.2, 0, -3.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+{
+    "position": [-7.2, 0, -2.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+{
+    "position": [-7.2, 0, -1.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+
+{
+    "position": [-7.6, 0, -0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+}, 
+{
+    "position": [-8.4, 0, -0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+}, 
+{
+    "position": [-6.8, 0, -0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+}, 
+
+{
+    "position": [-6, 0, -0.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+}, 
+
+
+
+{
+    "position": [-7.6, 0, -3.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+}, 
+/////////////////////////////10TH
+
+{
+    "position": [-8, 0, -3.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+{
+    "position": [-8, 0, -4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+{
+    "position": [-8, 0, -4.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+
+{
+    "position": [-8, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+}, 
+
+{
+    "position": [-8.4, 0, -6.8],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+}, 
+
+{
+    "position": [-8.4, 0, -2.8],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+},
+{
+    "position": [-8.4, 0, -4.4],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "wall"
+    }
+    ]
+},
+{
+    "position": [-8.8, 0, -2.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+},
+{
+    "position": [-8.8, 0, -5.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+    {
+        "type": "Mesh Renderer",
+        "mesh": "wall",
+        "material": "wall"
+    },
+    {
+        "type": "zwall"
+    }
+    ]
+},
+
+
+///////////////////////////last column
+
+{        
+    "position": [-9.6, 0, 0],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -0.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.2, 0, -3.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-8.6, 0, -1.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-9.2, 0, -1.2],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+
+
+
+{        
+    "position": [-8.6, 0, -7.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+{        
+    "position": [-9.2, 0, -7.6],
+    "rotation": [0, 0, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "wall"
+        }
+    ]
+},
+
+
+
+
+
+{        
+    "position": [-9.6, 0, -1.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -2.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -3.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -4.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -5.6],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -6.4],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -7.2],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+{        
+    "position": [-9.6, 0, -8.8],
+    "rotation": [0, 90, 0],
+    "scale": [0.001, 0.001, 0.001],
+    "components": [
+        {
+            "type": "Mesh Renderer",
+            "mesh": "wall",
+            "material": "wall"
+        },
+        {
+            "type": "zwall"
+        }
+    ]
+},
+
+
+
+
+
+
+
+
+
+
+
+
+            {        
+                "position": [-0.4, 0, -1.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-0.8, 0, -1.6],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-0.8, 0, -2.4],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-1.2, 0, -2.8],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-2, 0, -2.8],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+
+
+
+
+
+
+            {        
+                "position": [-0.4, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },   
+            {        
+                "position": [-0.8, 0, 0],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },   
+
+
+            {        
+                "position": [-0.8, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-1.2, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2.8, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-3.6, 0, 0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-4, 0, 0],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-4, 0, -0.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-4, 0, -1.6],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-3.6, 0, -1.2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2.8, 0, -0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2, 0, -0.4],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },
+            {        
+                "position": [-1.6, 0, -0.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            },  
+
+            {        
+                "position": [-2.4, 0, -0.8],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2.4, 0, -1.6],
+                "rotation": [0, 90, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "zwall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2, 0, -2.0],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            }, 
+            {        
+                "position": [-2.8, 0, -2],
+                "rotation": [0, 0, 0],
+                "scale": [0.001, 0.001, 0.001],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "wall",
+                        "material": "wall"
+                    },
+                    {
+                        "type": "wall"
+                    }
+                ]
+            },
+
+//             {        
+//                 "position": [2.2, -1, 38.4],
+//                 "rotation": [0,180, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "wall"
+//                     }
+//                 ]
+//             },    
+//             {        
+//                 "position": [4.4, -1, 38.4],
+//                 "rotation": [0,180, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "wall"
+//                     }
+//                 ]
+//             },  
+//             {        
+//                 "position": [5, -1, 31.8],
+//                 "rotation": [0, 270, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [5, -1, 36.2],
+//                 "rotation": [0, 270, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+
+//             // {        
+//             //     "position": [0, -1, 27.4],
+//             //     "rotation": [0, 90, 0],
+//             //     "scale": [0.01, 0.01, 0.01],
+//             //     "components": [
+//             //         {
+//             //             "type": "Mesh Renderer",
+//             //             "mesh": "wall",
+//             //             "material": "wall"
+//             //         },
+//             //         {
+//             //             "type": "zwall"
+//             //         }
+//             //     ]
+//             // },    
+//             {        
+//                 "position": [0, -1, 31.8],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [0, -1, 36.2],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+            
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ///right side
+
+//             {        
+//                 "position": [5, -1, 23],
+//                 "rotation": [0, 270, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [5, -1, 18.6],
+//                 "rotation": [0, 270, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [5, -1, 14.2],
+//                 "rotation": [0, 270, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [5, -1, 9.8],
+//                 "rotation": [0, 270, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//                 /////////////////////////////////////////////////////////////////////////////////////////////////
+//                 //back side
+//             {        
+//                 "position": [2.8, -1, 7.6],
+//                 "rotation": [0, 0, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "wall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [-1.6, -1, 7.6],
+//                 "rotation": [0, 0, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "wall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [-6.0, -1, 7.6],
+//                 "rotation": [0, 0, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "wall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [-10.4, -1, 7.6],
+//                 "rotation": [0, 0, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "wall"
+//                     }
+//                 ]
+//             },
+// /////////////////////////////////////////////////////////////////////////////////////////////////////
+//                 /////////////////////////////////////////////////////////////////////////////////////////////////
+//                 //front side
+//                 {        
+//                     "position": [-2.2, -1, 29.6],
+//                     "rotation": [0, 180, 0],
+//                     "scale": [0.01, 0.01, 0.01],
+//                     "components": [
+//                         {
+//                             "type": "Mesh Renderer",
+//                             "mesh": "wall",
+//                             "material": "wall"
+//                         },
+//                         {
+//                             "type": "wall"
+//                         }
+//                     ]
+//                 },
+//                 {        
+//                     "position": [-6.6, -1, 29.6],
+//                     "rotation": [0, 180, 0],
+//                     "scale": [0.01, 0.01, 0.01],
+//                     "components": [
+//                         {
+//                             "type": "Mesh Renderer",
+//                             "mesh": "wall",
+//                             "material": "wall"
+//                         },
+//                         {
+//                             "type": "wall"
+//                         }
+//                     ]
+//                 },
+//                 {        
+//                     "position": [-10, -1, 29.6],
+//                     "rotation": [0, 180, 0],
+//                     "scale": [0.01, 0.01, 0.01],
+//                     "components": [
+//                         {
+//                             "type": "Mesh Renderer",
+//                             "mesh": "wall",
+//                             "material": "wall"
+//                         },
+//                         {
+//                             "type": "wall"
+//                         }
+//                     ]
+//                 },
+//                 {        
+//                     "position": [-14.4, -1, 29.6],
+//                     "rotation": [0, 180, 0],
+//                     "scale": [0.01, 0.01, 0.01],
+//                     "components": [
+//                         {
+//                             "type": "Mesh Renderer",
+//                             "mesh": "wall",
+//                             "material": "wall"
+//                         },
+//                         {
+//                             "type": "wall"
+//                         }
+//                     ]
+//                 },
+// //////////////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////leftSide
+
+//             {        
+//                 "position": [-16.6, -1, 27.4],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
                 
-            {        
-                "position": [-16.6, -1, 23],
-                "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-            {        
-                "position": [-16.6, -1, 18.6],
-                "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-            {        
-                "position": [-16.6, -1, 14.2],
-                "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-            {        
-                "position": [-16.6, -1, 9.8],
-                "rotation": [0, 90, 0],
-                "scale": [0.01, 0.01, 0.01],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "wall",
-                        "material": "wall"
-                    },
-                    {
-                        "type": "zwall"
-                    }
-                ]
-            },
-/////////////////////////////////////////////////////////////
-//attached to right side
+//             {        
+//                 "position": [-16.6, -1, 23],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [-16.6, -1, 18.6],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [-16.6, -1, 14.2],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+//             {        
+//                 "position": [-16.6, -1, 9.8],
+//                 "rotation": [0, 90, 0],
+//                 "scale": [0.01, 0.01, 0.01],
+//                 "components": [
+//                     {
+//                         "type": "Mesh Renderer",
+//                         "mesh": "wall",
+//                         "material": "wall"
+//                     },
+//                     {
+//                         "type": "zwall"
+//                     }
+//                 ]
+//             },
+// /////////////////////////////////////////////////////////////
+// //attached to right side
 
-{        
-    "position": [2.8, -1, 20.8],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
-{        
-    "position": [0.6, -1, 20.8],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
-{        
-    "position": [2.8, -1, 10],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
-{        
-    "position": [-1.6, -1, 10],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
+// {        
+//     "position": [2.8, -1, 20.8],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
+// {        
+//     "position": [0.6, -1, 20.8],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
+// {        
+//     "position": [2.8, -1, 10],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
+// {        
+//     "position": [-1.6, -1, 10],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-1.6, -1, 10],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
+// {        
+//     "position": [-1.6, -1, 10],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-3.8, -1, 12],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-3.8, -1, 12],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-3.8, -1, 12],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
+// {        
+//     "position": [-3.8, -1, 12],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-6.0, -1, 14.2],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-6.0, -1, 14.2],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-6.0, -1, 18.6],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
-//////////////////////////////////////////////////////////
-//// attached to the front side
+// {        
+//     "position": [-6.0, -1, 18.6],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
+// //////////////////////////////////////////////////////////
+// //// attached to the front side
 
-{        
-    "position": [0, -1, 27.4],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
-{        
-    "position": [-2.2, -1, 25.2],
-    "rotation": [0, 180, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
-{        
-    "position": [-6.6, -1, 25.2],
-    "rotation": [0, 180, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
+// {        
+//     "position": [0, -1, 27.4],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
+// {        
+//     "position": [-2.2, -1, 25.2],
+//     "rotation": [0, 180, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
+// {        
+//     "position": [-6.6, -1, 25.2],
+//     "rotation": [0, 180, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-2.2, -1, 23],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
-{        
-    "position": [-2.2, -1, 19.6],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-2.2, -1, 23],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
+// {        
+//     "position": [-2.2, -1, 19.6],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-2.2, -1, 17.2],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-2.2, -1, 17.2],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [0, -1, 15],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [0, -1, 15],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-12, -1, 27.4],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-12, -1, 27.4],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-12, -1, 23],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-12, -1, 23],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-12, -1, 16.2],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-12, -1, 16.2],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-12, -1, 11.8],
-    "rotation": [0, 90, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "zwall"
-        }
-    ]
-},
+// {        
+//     "position": [-12, -1, 11.8],
+//     "rotation": [0, 90, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "zwall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-14.2, -1, 11.8],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
+// {        
+//     "position": [-14.2, -1, 11.8],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
 
-{        
-    "position": [-9.8, -1, 9.6],
-    "rotation": [0, 0, 0],
-    "scale": [0.01, 0.01, 0.01],
-    "components": [
-        {
-            "type": "Mesh Renderer",
-            "mesh": "wall",
-            "material": "wall"
-        },
-        {
-            "type": "wall"
-        }
-    ]
-},
+// {        
+//     "position": [-9.8, -1, 9.6],
+//     "rotation": [0, 0, 0],
+//     "scale": [0.01, 0.01, 0.01],
+//     "components": [
+//         {
+//             "type": "Mesh Renderer",
+//             "mesh": "wall",
+//             "material": "wall"
+//         },
+//         {
+//             "type": "wall"
+//         }
+//     ]
+// },
 
 
 
