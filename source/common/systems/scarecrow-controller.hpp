@@ -65,7 +65,8 @@ namespace our
                 {
                     entity->getComponent<MovementComponent>()->linearVelocity.x *= -1;
                 }
-                if(iscollide(world, position) == COLLIDED_WITH_XWALL)
+                if(iscollide(world, position) == COLLIDED_WITH_XWALL
+                    || position.z < -9 && position.x > -5.5 && position.x < -4.8)
                 {
                     entity->getComponent<MovementComponent>()->linearVelocity.z *= -1;
                 }

@@ -242,8 +242,9 @@
                     }
                 ]
             },
+            ////////////////////////////////////////// SCARECROWS ////////////////////////////////////////
             {
-                "position": [-4.6, -0.2, -2],
+                "position": [-2.9, -0.2, -1.7],
                 "scale": [0.04,0.04,0.04],
                 "components": [
                     {
@@ -259,7 +260,7 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0.2, 0, -0.2],
+                        "linearVelocity": [0.4, 0, -0.4],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
@@ -281,13 +282,13 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [-0.2, 0, -0.2],
+                        "linearVelocity": [-0.4, 0, -0.4],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
             },
             {
-                "position": [-3.5, -0.2, -3.5],
+                "position": [-3.5, -0.2, -0.2],
                 "scale": [0.04,0.04,0.04],
                 "components": [
                     {
@@ -303,13 +304,13 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [-0.2, 0, -0.2],
+                        "linearVelocity": [-0.4, 0, -0.4],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
             },
             {
-                "position": [-6.3, -0.2, -6.3],
+                "position": [-0.6, -0.2, -0.3],
                 "scale": [0.04,0.04,0.04],
                 "components": [
                     {
@@ -325,13 +326,13 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0.2, 0, -0.2],
+                        "linearVelocity": [0.4, 0, -0.4],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
             },
             {
-                "position": [-8.5, -0.2, -7.5],
+                "position": [-1.9, -0.2, -0.89],
                 "scale": [0.04,0.04,0.04],
                 "components": [
                     {
@@ -347,13 +348,13 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0.2, 0, 0.2],
+                        "linearVelocity": [0.6, 0, 0.6],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
             },
             {
-                "position": [-8.5, -0.2, -8.5],
+                "position": [-1.7, -0.2, -7],
                 "scale": [0.04,0.04,0.04],
                 "components": [
                     {
@@ -369,13 +370,13 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0.2, 0, 0.2],
+                        "linearVelocity": [0.6, 0, 0.6],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
             },
             {
-                "position": [-8.5, -0.2, -1.5],
+                "position": [-1.9, -0.2, -5.8],
                 "scale": [0.04,0.04,0.04],
                 "components": [
                     {
@@ -391,12 +392,435 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0.2, 0, 0.2],
+                        "linearVelocity": [0.6, 0, 0.6],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-2.1, -0.2, -4.9],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.6, 0, 0.6],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-3.5, -0.2, -3.3],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.8, 0, 0.8],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-4.3, -0.2, -3.3],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.8, 0, 0.8],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-5, -0.2, -3.3],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.8, 0, 0.8],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-5, -0.2, -2.5],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.8, 0, 0.8],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-6.5, -0.2, -2.5],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.8, 0, 0.8],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-6.2, -0.2, -5.5],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-8.5, -0.2, -6.3],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-8, -0.2, -8.6],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-8.5, -0.2, -8.6],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-6.2, -0.2, -6.7],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-3.7, -0.2, -6.6],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-4.8, -0.2, -4.9],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0.5],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            //z-only
+            {
+                "position": [-2, -0.2, -3.3],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0, 0, 0.4],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-5.3, -0.2, -3.9],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0, 0, 0.4],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            //x-only
+            {
+                "position": [-1.2, -0.2, -4.6],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.4, 0, 0],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-6.6, -0.2, -3.3],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.5, 0, 0],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-6.2, -0.2, -8.6],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.6, 0, 0],
+                        "angularVelocity": [0, 0, 0]
+                    }
+                ]
+            },
+            {
+                "position": [-5.9, -0.2, -7.9],
+                "scale": [0.04,0.04,0.04],
+                "components": [
+                    {
+                        "type":"Mesh Renderer",
+                        "mesh": "scarecrow",
+                        "material":"scarecrow"
+                    },
+                    {
+                        "type":"scarecrow"
+                    },
+                    {
+                        "type": "Scare Crow Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0.6, 0, 0],
                         "angularVelocity": [0, 0, 0]
                     }
                 ]
             },
 
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             {        
                 "position": [-5, -1.2, -5],
                 "rotation": [0,270 , 0],

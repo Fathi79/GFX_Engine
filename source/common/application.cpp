@@ -1,3 +1,5 @@
+#define MINIAUDIO_IMPLEMENTATION
+#include <miniaudio.h>
 #include "application.hpp"
 
 #include <iostream>
@@ -9,8 +11,7 @@
 #include <queue>
 #include <tuple>
 #include <filesystem>
-#define MINIAUDIO_IMPLEMENTATION
-#include <miniaudio.h>
+
 
 #include <flags/flags.h>
 
@@ -241,13 +242,25 @@ int our::Application::run(int run_for_frames) {
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
 
+
+    std::unordered_map<std::string, ma_sound*> sounds; //All the music tracks that the program can run
+    ma_sound* currentMusic = nullptr;
+    ma_sound* nextMusic = nullptr;
+    sounds["menu"] = new ma_sound();
+    sounds["play"] = new ma_sound();
+    sounds["loser"] = new ma_sound();
     //Initializing the music engine
     ma_result result;
     ma_engine* pEngine = new ma_engine();
+    
     result = ma_engine_init(NULL, pEngine);
     if (result == MA_SUCCESS) { //Succeeded to initialize the engine
-        //Starting the music
-        ma_engine_play_sound(pEngine, "assets/music/almas.mp3", NULL);
+        //Initializig the music tracks
+        ma_sound_init_from_file(pEngine, "assets/music/Tamam.mp3", 0, NULL, NULL, sounds["menu"]);
+        ma_sound_init_from_file(pEngine, "assets/music/Ambiance.mp3", 0, NULL, NULL, sounds["loser"]);
+        ma_sound_init_from_file(pEngine, "assets/music/Graveyard.mp3", 0, NULL, NULL, sounds["play"]);
+        currentMusic = sounds["menu"];
+        ma_sound_start(currentMusic);
     }
 
     //Game loop
@@ -331,11 +344,28 @@ int our::Application::run(int run_for_frames) {
         while(nextState){
             // If a scene was already running, destroy it (not delete since we can go back to it later)
             if(currentState) currentState->onDestroy();
+            //Extract next music based on the next state
+            for(auto it : states)
+            {
+                if(it.second == nextState){
+                    nextMusic = sounds[it.first];
+                    break;
+                }
+            }
             // Switch scenes
             currentState = nextState;
             nextState = nullptr;
             // Initialize the new scene
             currentState->onInitialize();
+
+            
+            //Switch music
+            ma_sound_stop(currentMusic);
+            currentMusic = nextMusic;
+            nextMusic = nullptr;
+            ma_sound_seek_to_pcm_frame(currentMusic, 0);
+            ma_sound_set_looping(currentMusic, true);
+            ma_sound_start(currentMusic);
         }
 
         ++current_frame;

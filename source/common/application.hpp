@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <glm/vec2.hpp>
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -64,6 +65,7 @@ namespace our {
         State * nextState = nullptr;            // If it is requested to go to another scene, this will contain a pointer to that scene
 
         
+        
         // Virtual functions to be overrode and change the default behaviour of the application
         // according to the example needs.
         virtual void configureOpenGL();                             // This function sets OpenGL Window Hints in GLFW.
@@ -75,7 +77,7 @@ namespace our {
         // Create an application with following configuration
         Application(const nlohmann::json& app_config) : app_config(app_config) {}
         // On destruction, delete all the states
-        ~Application(){ for (auto &it : states) delete it.second; }
+        ~Application(){ for (auto &it : states) delete it.second;}
 
         // This is the main class function that run the whole application (Initialize, Game loop, House cleaning).
         int run(int run_for_frames = 0);
