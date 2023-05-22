@@ -53,34 +53,32 @@ namespace our {
         void deserialize(const nlohmann::json& data) override;
     };
 
-    // lighting material class
-    
-    class LitMaterial : public TexturedMaterial {
-    public:
-        Texture2D* albedo;
-        Texture2D* specular;
-        Texture2D* ambient_occlusion;
-        Texture2D* roughness;
-        Texture2D* emissive;
-        Sampler* sampler;
+ // lighting material class
+class LitMaterial : public TexturedMaterial {
+public:
+    Texture2D* albedo;               // Albedo texture
+    Texture2D* specular;             // Specular texture
+    Texture2D* ambient_occlusion;    // Ambient occlusion texture
+    Texture2D* roughness;            // Roughness texture
+    Texture2D* emissive;             // Emissive texture
+    Sampler* sampler;                // Texture sampler
 
-        void setup() const override;            
-        void deserialize(const nlohmann::json& data) override;
-    };
+    void setup() const override;     // Setup function for the material
+    void deserialize(const nlohmann::json& data) override;   // Deserialize function to populate the material from JSON data
+};
 
-    // This function returns a new material instance based on the given type
-    inline Material* createMaterialFromType(const std::string& type){
-        if(type == "tinted"){
-            return new TintedMaterial();
-        } else if(type == "textured"){
-            return new TexturedMaterial();
-        } else if(type == "lighted"){
-            return new LitMaterial();
-        }
-         else {
-            return new Material();
-        }
+// This function returns a new material instance based on the given type
+inline Material* createMaterialFromType(const std::string& type){
+    if(type == "tinted"){
+        return new TintedMaterial();        // Create a TintedMaterial instance
+    } else if(type == "textured"){
+        return new TexturedMaterial();      // Create a TexturedMaterial instance
+    } else if(type == "lighted"){
+        return new LitMaterial();           // Create a LitMaterial instance
     }
-    
+    else {
+        return new Material();              // Create a generic Material instance
+    }
+}
 
 }
