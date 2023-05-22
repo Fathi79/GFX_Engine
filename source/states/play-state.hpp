@@ -53,10 +53,10 @@ class Playstate: public our::State {
             // If the escape  key is pressed in this frame, go to the play state
             getApp()->changeState("menu");
         }
-        //std::cout<<cameraController.f<<std::endl;
+
         if(cameraController.f){
-            std::cout<<"In collide"<<std::endl;
-            renderer.eEman();
+            //Rendering the postprocessing effect during speeding up
+            renderer.invertDummyVariable();
         }
     }
 

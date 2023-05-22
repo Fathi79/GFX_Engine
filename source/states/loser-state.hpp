@@ -10,8 +10,7 @@
 #include <functional>
 #include <array>
 
-
-// This state shows how to use some of the abstractions we created to make a menu.
+// This state is similar to the menu state. It is used when the user wins the game
 class Loserstate: public our::State {
 
     // A meterial holding the menu shader and the menu texture to draw
@@ -33,7 +32,7 @@ class Loserstate: public our::State {
         menuMaterial->shader->attach("assets/shaders/textured.vert", GL_VERTEX_SHADER);
         menuMaterial->shader->attach("assets/shaders/textured.frag", GL_FRAGMENT_SHADER);
         menuMaterial->shader->link();
-        // Then we load the menu texture
+        // Then we load the menu texture (Loser version)
         menuMaterial->texture = our::texture_utils::loadImage("assets/textures/loser.png");
         // Initially, the menu material will be black, then it will fade in
         menuMaterial->tint = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
