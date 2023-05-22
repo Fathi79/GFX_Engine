@@ -6,10 +6,7 @@
 
 namespace our {
 
-    // This component denotes that the MovementSystem will move the owning entity by a certain linear and angular velocity.
-    // This component is added as a simple example for how use the ECS framework to implement logic.
-    // For more information, see "common/systems/movement.hpp"
-    // For a more complex example of how to use the ECS framework, see "free-camera-controller.hpp"
+    // This is a scarecrow component
     class scarecrow : public Component {
     public:
 

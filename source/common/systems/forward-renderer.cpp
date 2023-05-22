@@ -318,17 +318,13 @@ namespace our
             command.mesh->draw();
         }
 
-        // If there is a postprocess material, apply postprocessing
-        if(postprocessMaterial&&eman){
+        // If there is a postprocess material and dummy flag is true, apply postprocessing effect
+        if(postprocessMaterial && dummy){
 
             glActiveTexture(GL_TEXTURE1);
-
             Distorsion->bind();
             postprocessMaterial->sampler->bind(1);
             postprocessMaterial->shader->set("additional_sampler",1);
-
-            
-
 
 
             //TODO: (Req 11) Return to the default framebuffer
@@ -342,7 +338,6 @@ namespace our
             if (lightMaterial)
             {
                 lightMaterial->setup();
-                // lightMaterial->shader->set()
             }
         }
     }

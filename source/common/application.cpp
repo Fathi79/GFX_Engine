@@ -241,14 +241,14 @@ int our::Application::run(int run_for_frames) {
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
 
+    //Initializing the music engine
     ma_result result;
     ma_engine* pEngine = new ma_engine();
-
     result = ma_engine_init(NULL, pEngine);
-    if (result != MA_SUCCESS) {
-        return -1;  // Failed to initialize the engine.
+    if (result == MA_SUCCESS) { //Succeeded to initialize the engine
+        //Starting the music
+        ma_engine_play_sound(pEngine, "assets/music/almas.mp3", NULL);
     }
-    ma_engine_play_sound(pEngine, "assets/music/almas.mp3", NULL);
 
     //Game loop
     while(!glfwWindowShouldClose(window)){

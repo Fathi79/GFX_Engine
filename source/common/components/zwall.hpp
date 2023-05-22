@@ -6,14 +6,11 @@
 
 namespace our {
 
-    // This component denotes that the MovementSystem will move the owning entity by a certain linear and angular velocity.
-    // This component is added as a simple example for how use the ECS framework to implement logic.
-    // For more information, see "common/systems/movement.hpp"
-    // For a more complex example of how to use the ECS framework, see "free-camera-controller.hpp"
+    // This component denotes the walls in the z-direction
     class zwall : public Component {
     public:
 
-        // The ID of this component type is "Movement"
+        // The ID of this component type is "zwall"
         static std::string getID() { return "zwall"; }
 
         // Reads linearVelocity & angularVelocity from the given json object

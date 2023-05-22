@@ -44,7 +44,8 @@ namespace our
         TexturedMaterial* postprocessMaterial;
         // Objects used for distortion
         Texture2D* Distorsion;
-        bool eman=false;
+        //Dummy variable to switch between postprocessing effects
+        bool dummy=false;
         // Objects used to support lighting
         std::vector<LightComponent*> lightSources;
         LitMaterial* lightMaterial;
@@ -55,7 +56,8 @@ namespace our
         
 
     public:
-        void eEman(){eman=!eman;}
+        //Inverts between the postprocessing effects
+        void invertDummyVariable(){dummy=!dummy;}
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
         void initialize(glm::ivec2 windowSize, const nlohmann::json& config);
@@ -64,7 +66,7 @@ namespace our
         // This function should be called every frame to draw the given world
         void render(World* world);
         /// read material sky from json
-          void deserialize(const nlohmann::json &data) 
+        void deserialize(const nlohmann::json &data) 
         {
             if (data.contains("skyTop"))
             {

@@ -48,6 +48,7 @@ namespace our
             // As soon as we find one, we break
             scarecrow* sc = nullptr;
             ScareCrowControllerComponent *controller = nullptr;
+            // Loop over all the scarecrows to update them
             for(auto entity : world->getEntities()){
                 sc = entity->getComponent<scarecrow>();
                 controller = entity->getComponent<ScareCrowControllerComponent>();
@@ -59,6 +60,7 @@ namespace our
                 glm::vec3& position = entity->localTransform.position;
                 glm::vec3& rotation = entity->localTransform.rotation;
 
+                // When the scarecrow collides with a wall, it changes its motion direction
                 if(iscollide(world, position) == COLLIDED_WITH_ZWALL)
                 {
                     entity->getComponent<MovementComponent>()->linearVelocity.x *= -1;
@@ -89,6 +91,7 @@ namespace our
             
             auto entities = World->getEntities();
 
+            //Loop over all walls to check if the scarecrow collided with any of them
             for(auto entity : entities)
             {
                 if(entity->getComponent<wall>())

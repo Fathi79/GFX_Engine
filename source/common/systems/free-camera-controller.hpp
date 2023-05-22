@@ -73,23 +73,14 @@ namespace our
             // This could prevent floating point error if the player rotates in single direction for an extremely long time. 
             rotation.y = glm::wrapAngle(rotation.y);
 
-            // We update the camera fov based on the mouse wheel scrolling amount
-            // float fov = camera->fovY + app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT) * controller->fovSensitivity;
-            // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-            // camera->fovY = fov;
+            // In case of speed up, the following condition raises a flag to apply postprocessing effect
             float fov;
             if (app->getKeyboard().justPressed(GLFW_KEY_LEFT_SHIFT)&&app->getKeyboard().isPressed(GLFW_KEY_W))
             {   
                 f=true;
-                // fov = camera->fovY + 0.99*1.2;
-                // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-                // camera->fovY = fov;
             }
             if(app->getKeyboard().justReleased(GLFW_KEY_LEFT_SHIFT)&&app->getKeyboard().isPressed(GLFW_KEY_W)&&f){
                 f=false;
-                // fov = camera->fovY- 0.99*1.2;
-                // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-                // camera->fovY = fov;
             }
          
             
@@ -119,14 +110,8 @@ namespace our
             if(app->getKeyboard().isPressed(GLFW_KEY_D)) rotation.y -= deltaTime* 200 * controller->rotationSensitivity;
             if(app->getKeyboard().isPressed(GLFW_KEY_A)) rotation.y += deltaTime* 200 * controller->rotationSensitivity;
 
-            // Q & E moves the player left or right (for building the maze)
-            if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
-            if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
 
-            // iscolide = iscollide(world,position);
-            // if(iscolide) position -= front * (deltaTime * current_sensitivity.z);
-
-            // Change the condition to reaching the exit
+            // When the player reaches the end of the maze
             if(position.z < -9.5 && position.x > -5.5 && position.x < -4.8) app->changeState("win");
         }
 
@@ -149,8 +134,10 @@ namespace our
             
             auto entities = World->getEntities();
 
+            //Loop through the whole world entities
             for(auto entity : entities)
             {
+                //If the camera collided with a scarecrow, the app changes its state from play state to loser state
                 if(entity->getComponent<scarecrow>())
                 {
                     crowPosition = glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
@@ -159,6 +146,7 @@ namespace our
                         app->changeState("loser");
                     }
                 }
+                //If the camera collided with a wall, it can't move anymore
                 if(entity->getComponent<wall>())
                 {
                     wallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
@@ -169,6 +157,7 @@ namespace our
                         return true;
                     }
                 }
+                //Same as the previous, but handles walls in the other direction
                 if(entity->getComponent<zwall>())
                 {
                     zwallPosition =glm::vec3(entity->getLocalToWorldMatrix() *glm::vec4(entity->localTransform.position, 1.0));
@@ -181,6 +170,7 @@ namespace our
                 }
 
             }
+            //If the camera didn't collide with anything
             return false;
     
         }
