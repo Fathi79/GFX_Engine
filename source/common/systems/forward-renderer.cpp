@@ -22,9 +22,9 @@ namespace our
             skyShader->attach("assets/shaders/textured.frag", GL_FRAGMENT_SHADER);
             skyShader->link();
 
-            // TODO: (Req 9) Pick the correct pipeline state to draw the sky
-            //  Hints: the sky will be draw after the opaque objects so we would need depth testing but which depth function should we pick?
-            //  We will draw the sphere from the inside, so what options should we pick for the face culling.
+            //TODO: (Req 10) Pick the correct pipeline state to draw the sky
+            // Hints: the sky will be draw after the opaque objects so we would need depth testing but which depth funtion should we pick?
+            // We will draw the sphere from the inside, so what options should we pick for the face culling.
             PipelineState skyPipelineState{};
             skyPipelineState.depthTesting.enabled = true;
             skyPipelineState.depthTesting.function = GL_LEQUAL;
@@ -55,10 +55,10 @@ namespace our
         // Then we check if there is a postprocessing shader in the configuration
         if (config.contains("postprocess"))
         {
-            // TODO: (Req 10) Create a framebuffer
+            // TODO: (Req 11) Create a framebuffer
             glGenFramebuffers(1, &postprocessFrameBuffer);
 
-            // TODO: (Req 10) Create a color and a depth texture and attach them to the framebuffer
+            // TODO: (Req 11) Create a color and a depth texture and attach them to the framebuffer
             //  Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             //  The depth format can be (Depth component with 24 bits).
             colorTarget = new Texture2D();
@@ -75,7 +75,7 @@ namespace our
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
 
-            // TODO: (Req 10) Unbind the framebuffer just to be safe
+            // TODO: (Req 11) Unbind the framebuffer just to be safe
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
             // Create a vertex array to use for drawing the texture
@@ -177,9 +177,16 @@ namespace our
         if (camera == nullptr)
             return;
 
-        // TODO: (Req 8) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
-        //  HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        //  camera forward sight direction of the camera (center - eye position)
+        //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
+        // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
+        
+        // These lines of code define a camera position and orientation in a 3D scene . 
+        // at first i get the owner of the camera
+        // then getLocalToWorldMatrix 
+        // then creates a 4D vector called "eye" with x, y, z, and w components set to my place in world multiplyed by (0.0f, 0.0f, 0.0f, 1.0f)->(). This represents the position of the camera in world space.
+        // then creates another 4D vector called "center" with x, y, z, and w components set to my place in world multiplyed by (0.0f, 0.0f, -1.0f, 1.0f). This represents the point in world space that the camera is looking at.
+        // then calculates a normalized vector called "cameraForward" by subtracting the "eye" vector from the "center" vector and then normalizing the result. This represents the direction that the camera is facing.
+
         auto owner = camera->getOwner();
         auto M = owner->getLocalToWorldMatrix();
         glm::vec3 eye = M * glm::vec4(0, 0, 0, 1);
@@ -187,21 +194,26 @@ namespace our
         glm::vec3 cameraForward = glm::normalize(center - eye);
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand &first, const RenderCommand &second)
                   {
-            //TODO: (Req 8) Finish this function
+            //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
+            //the dot product of two vectors is a scalar (a single number). represents the magnitude of the projection of one vector onto the other. 
+            //In other words, it measures how much of one vector is pointing in the same direction as the other vector.
+            //so by these i know which object i nearer to the camera
             if (glm::dot(cameraForward,first.center) > glm::dot(cameraForward,second.center)  )
             return true;
             else
             return false; });
 
-        // TODO: (Req 8) Get the camera ViewProjection matrix and store it in VP
+        // TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
         glm::mat4 VP = camera->getProjectionMatrix(windowSize) * camera->getViewMatrix();
-        // TODO: (Req 8) Set the OpenGL viewport using windowSize
+         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
+        //glViewport((lower left corner of the viewport rectangle),(width and height of the viewport))
         glViewport(0, 0, windowSize.x, windowSize.y);
-        // TODO: (Req 8) Set the clear color to black and the clear depth to 1
+        // TODO: (Req 9) Set the clear color to black and the clear depth to 1
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClearDepth(1.0);
-        // TODO: (Req 8) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
+        //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
+        // glColorMask controls which color channels (red, green, blue, and alpha) are enabled for writing. 
         glColorMask(true, true, true, true);
         glDepthMask(true);
 
@@ -210,15 +222,16 @@ namespace our
             //TODO: (Req 11) bind the framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
         }
-        // TODO: (Req 8) Clear the color and depth buffers
+        // TODO: (Req 9) Clear the color and depth buffers
         // If you have depth testing enabled you should also clear the depth buffer before each frame using GL_DEPTH_BUFFER_BIT; otherwise you're stuck with the depth values from last frame:
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // TODO: (Req 8) Draw all the opaque commands
+        // TODO: (Req 9) Draw all the opaque commands
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         glm::mat4 MVP_O;
         for (auto command : opaqueCommands)
         {
+            // use MVP matrix to draw to object in its right place
              command.material->setup();
             MVP_O = VP * command.localToWorld;
             // if the material of the object is lighted
@@ -260,16 +273,25 @@ namespace our
         // If there is a sky material, draw the sky
         if (this->skyMaterial)
         {
-            // TODO: (Req 9) setup the sky material
+            //TODO: (Req 10) setup the sky material
+            //this function sets up the sky attributes as a textured material 
+            // it calls the setup function of the textured material
             this->skyMaterial->setup();
-            // TODO: (Req 9) Get the camera position
+            //TODO: (Req 10) Get the camera position
+            /*To determine the camera's position in world coordinates, 
+            a homogeneous vector with components (0, 0, 0, 1) is constructed. 
+            This vector is then multiplied by the transformation matrix M. 
+            The resulting vector is a 4D vector, but the fourth component (w) is discarded to obtain a 3D position vector.
+            The resulting vector gives the camera's position in world coordinates.*/
+            //glm::vec3 eye = M * glm::vec4(0.0, 0.0, 0.0, 1.0);
             glm::vec3 cameraPosition = eye;
-            // TODO: (Req 9) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
+            //TODO: (Req 10) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
+            //skyModel is The matrix used to transform the vertices of the sky to make it appear as if it always follows the camera position , giving the illusion that it is infinitely far away. 
 
             our::Transform skyTransform;
             skyTransform.position = cameraPosition;
             glm::mat4 skyModel = skyTransform.toMat4();
-            // TODO: (Req 9) We want the sky to be drawn behind everything (in NDC space, z=1)
+            // TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             //  We can achieve the is by multiplying by an extra matrix after the projection but what values should we put in it?
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 //  Row1, Row2, Row3, Row4
@@ -278,12 +300,14 @@ namespace our
                 0.0f, 0.0f, 0.0f, 0.0f, // Column3
                 0.0f, 0.0f, 1.0f, 1.0f  // Column4
             );
-            // TODO: (Req 9) set the "transform" uniform
+             //TODO: (Req 10) set the "transform" uniform
+            // here we are setting the uniform transform by our mvp matrix (so we first multiply by the model matrix , then VP=P*V , so we get mvp = p*v*m , then we multiply by the matrix always behind the scene which forces the sky to always be behind anything having z=1)
             skyMaterial->shader->set("transform", alwaysBehindTransform * VP * skyModel);
-            // TODO: (Req 9) draw the sky sphere
+             //TODO: (Req 10) draw the sky sphere
+            // calling mesh draw to draw the sky
             skySphere->draw();
         }
-        // TODO: (Req 8) Draw all the transparent commands
+        // TODO: (Req 9) Draw all the transparent commands
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         glm::mat4 MVP_T;
         for (auto command : transparentCommands)
