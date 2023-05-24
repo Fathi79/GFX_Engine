@@ -24,5 +24,8 @@ CMakeSettings.json
 # Screenshots
 screenshots/
 
+# Expected screenshots
+expected/
+
 #error 
 errors/
