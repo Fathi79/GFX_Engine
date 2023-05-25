@@ -10,7 +10,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Fathi79/GFX_Engine?style=flat-square)](https://github.com/Fathi79/GFX_Engine)
 
 ## Demo
-<video width="500" src="demo\Untitled.mp4" controls>
+<video width="500" src="https://github.com/Fathi79/GFX_Engine\demo\Untitled.mp4" controls>
   Your browser does not support the video tag.
 </video>
  
@@ -22,7 +22,7 @@
 	<code><img height="50" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Opengl-logo.svg/2560px-Opengl-logo.svg.png" alt="OpenGL" title="OpenGL"/></code>
 	<code><img height="50" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/GLM_logo.png" alt="GLM" title="GLM"/></code>
 	<code><img height="50" src="https://www.saashub.com/images/app/service_logos/38/b48cc85cebb2/large.png?1553244024" alt="GLFW" title="GLFW"/></code>
-    <code><img height="50" src="https://upload.wikimedia.org/wikipedia/commons/9/96/CMake-logo-triangle-high-res.png" alt="GLFW" title="GLFW"/></code>
+    <code><img height="50" src="https://upload.wikimedia.org/wikipedia/commons/9/96/CMake-logo-triangle-high-res.png" alt="Cmake" title="Cmake"/></code>
     <code><img height="50" src="demo\miniaudio.png" alt="miniaudio" title="miniaudio"/></code>
 </div>
 
